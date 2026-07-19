@@ -1,0 +1,1629 @@
+[
+  {
+    "id": 1,
+    "day": "Day 1",
+    "text": "In the pale blue gloom of your ruined lab, you pack your battered backpack: two bottles of water, two sandwiches, a flashlight, a lighter, and a sturdy rope. No medical supplies remain, and you have no weapon. You took blueprints for the project Scutum hoping you could use them to restart Earth's magnetic field. You need The Key also but it is in HQ on the edge of the city.",
+    "imageName": "day1_lab_background",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Continue",
+        "soundEffect": "",
+        "nextPromptId": 2,
+        "narrativeOutcome": "",
+        "setFlags": {
+          "hasWater": {
+            "type": "int",
+            "value": 2
+          },
+          "hasFood": {
+            "type": "int",
+            "value": 2
+          },
+          "hasRope": {
+            "type": "bool",
+            "value": true
+          },
+          "hasLighter": {
+            "type": "bool",
+            "value": true
+          },
+          "hasFlashlight": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 2,
+    "day": "Day 1",
+    "text": "A charged Li-ion battery sits on the shelf—a rare find, useful for trading or emergencies. But there’s only enough room to keep it if you leave behind either a bottle of water or a sandwich. You slowly exit the laboratory.",
+    "imageName": "day1_battery_background",
+    "soundEffect": "prompt1_light-flicker_low",
+    "choices": [
+      {
+        "text": "Take the battery, leave a bottle of water.",
+        "soundEffect": "grab_item",
+        "nextPromptId": 3,
+        "narrativeOutcome": "You stow the battery and give up precious water. It could be worth the risk.",
+        "setFlags": {
+          "hasBattery": {
+            "type": "bool",
+            "value": true
+          },
+          "hasWater": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      {
+        "text": "Take the battery, leave a sandwich.",
+        "soundEffect": "grab_item",
+        "nextPromptId": 3,
+        "narrativeOutcome": "You tuck the battery in your bag and leave behind a meal.",
+        "setFlags": {
+          "hasBattery": {
+            "type": "bool",
+            "value": true
+          },
+          "hasFood": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      {
+        "text": "Leave the battery, keep all your supplies.",
+        "soundEffect": "grab_item",
+        "nextPromptId": 3,
+        "narrativeOutcome": "You can't risk losing water or food. You leave the battery behind.",
+        "setFlags": {
+          "hasBattery": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 3,
+    "day": "Day 1",
+    "text": "Just outside you find a battered pharmacy with supplies inside. It is locked. The lock is tough. You could try to pick it quietly but someone could see you, or just smash it open but risk being heard.",
+    "imageName": "day1_pharmacy_background",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Pick the lock quietly.",
+        "soundEffect": "",
+        "nextPromptId": 4,
+        "consequence": {
+          "staDelta": -5,
+          "morDelta": 5
+        },
+        "narrativeOutcome": "You take your time and manage to pick the lock, slipping inside unnoticed. While you were trying to pick the lock, you cut your first finger."
+      },
+      {
+        "text": "Smash the lock open.",
+        "soundEffect": "",
+        "nextPromptId": 5,
+        "consequence": {
+          "staDelta": -10,
+          "morDelta": 5
+        },
+        "narrativeOutcome": "You break the lock, but the sound echoes into the street. Supplies are within reach, but you may have drawn attention."
+      },
+      {
+        "text": "Keep moving—too risky.",
+        "nextPromptId": 6,
+        "narrativeOutcome": "You decide it's not worth the risk and move on, empty-handed."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 4,
+    "day": "Day 1",
+    "text": "You made it! Inside the pharmacy, you find a few bandages and expired painkillers. You eat a sandwich and drink some water to steady your nerves, then slip away before anyone notices.",
+    "imageName": "day1_pharmacy_inside",
+    "choices": [
+      {
+        "text": "Take all the remaining supplies.",
+        "nextPromptId": 44441,
+        "consequence": {
+          "morDelta": -10
+        },
+        "narrativeOutcome": "",
+        "setFlags": {
+          "hasMedkit": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      {
+        "text": "Leave some supplies for another survivor.",
+        "nextPromptId": 44443,
+        "consequence": {
+          "morDelta": 10
+        },
+        "narrativeOutcome": "You take what you need and leave the rest for someone else. It's a small kindness.",
+        "setFlags": {
+          "hasMedkit": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 5,
+    "day": "Day 1",
+    "text": "You did it. You're afraid that someone heard the noise. Just when you entered the pharmacy, scavengers burst in, drawn by the noise. They demand your supplies. You may be able to bargain if you have something valuable.",
+    "imageName": "day1_scavengers",
+    "choices": [
+      {
+        "text": "Offer the battery in trade.",
+        "narrativeOutcome": "",
+        "branchOnFlag": {
+          "flag": "hasBattery",
+          "value": true,
+          "ifTrue": {
+            "nextPromptId": 6,
+            "narrativeOutcome": "You hand over the battery. The scavengers let you go with most of your supplies.",
+            "setFlags": {
+              "hasBattery": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          },
+          "ifFalse": {
+            "nextPromptId": 8,
+            "narrativeOutcome": "You forgot that you left the battery at the lab. The scavengers become hostile and violent, taking everything except one bottle of water."
+          }
+        }
+      },
+      {
+        "text": "Try to talk your way out.",
+        "nextPromptId": 7,
+        "consequence": {
+          "staDelta": -5,
+          "morDelta": -15
+        },
+        "narrativeOutcome": "You plead with the scavengers. They take some of your supplies but let you leave unharmed.",
+        "setFlags": {
+          "hasWater": {
+            "type": "int",
+            "value": 1
+          },
+          "hasFood": {
+            "type": "int",
+            "value": 1
+          },
+          "hasRope": {
+            "type": "bool",
+            "value": false
+          },
+          "hasMedkit": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      {
+        "text": "Flee.",
+        "nextPromptId": 55551,
+        "narrativeOutcome": "You sprint out the back. You escape, but you drop some supplies and are left shaken. At least you've managed to grab one medkit.",
+        "setFlags": {
+          "hasMedkit": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 6,
+    "day": "Day 1",
+    "text": "You move on, leaving the pharmacy and its dangers behind. Hunger gnaws at you, but you're safe for now.",
+    "imageName": "day1_street",
+    "choices": [
+      {
+        "text": "Continue",
+        "nextPromptId": 66661,
+        "consequence": {
+          "staDelta": -5,
+          "morDelta": -5
+        },
+        "narrativeOutcome": ""
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 7,
+    "day": "Day 1",
+    "text": "Night falls on the ruined city. You find a shadowy alley to rest. You make a small fire. It feels good. You hear distant voices, barking dogs, sometimes screams. You found some boxes to hide and sleep.",
+    "imageName": "day1_night",
+    "choices": [
+      {
+        "text": "Sleep and recover.",
+        "nextPromptId": 9,
+        "consequence": {
+          "hpDelta": 15,
+          "staDelta": 20,
+          "morDelta": 10
+        },
+        "narrativeOutcome": "You close your eyes and listen to the distant wind."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "fire",
+      "file": "fire"
+    }
+  },
+  {
+    "id": 8,
+    "day": "Day 1",
+    "text": "The scavengers ransack your pack, shouting and pushing. You’re left battered, clutching a single bottle of water. Everything else is gone.",
+    "imageName": "day1_scavengers_fail_outcome",
+    "choices": [
+      {
+        "text": "Move on, shaken.",
+        "nextPromptId": 7,
+        "consequence": {
+          "hpDelta": -20,
+          "morDelta": -20,
+          "staDelta": -20
+        },
+        "narrativeOutcome": "",
+        "setFlags": {
+          "hasWater": {
+            "type": "int",
+            "value": 1
+          },
+          "hasFood": {
+            "type": "int",
+            "value": 0
+          },
+          "hasRope": {
+            "type": "bool",
+            "value": false
+          },
+          "hasLighter": {
+            "type": "bool",
+            "value": false
+          },
+          "hasFlashlight": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 9,
+    "day": "Day 2",
+    "text": "You snap out of sleep, startled by a distant crash. Your body aches. In the murky morning gloom, you crawl to your feet and survey the street outside. The way forward—a tangle of burnt cars and blackened debris. Sirens wail somewhere far off. The hope you carried last night feels thin in your chest. The city seems to have changed again while you slept.",
+    "imageName": "day2_blocked_street",
+    "choices": [
+      {
+        "text": "Climb over the wreckage.",
+        "nextPromptId": 10,
+        "narrativeOutcome": "You grit your teeth and haul yourself over the wrecks. Your hands bleed, but you push forward.",
+        "consequence": {
+          "staDelta": -10,
+          "hpDelta": -15,
+          "morDelta": 0
+        },
+        "setFlags": {}
+      },
+      {
+        "text": "Search for a side street.",
+        "nextPromptId": 11,
+        "narrativeOutcome": "You slip into the side alleys, every sense strained for danger.",
+        "consequence": {
+          "staDelta": -5,
+          "hpDelta": 0,
+          "morDelta": 0
+        },
+        "setFlags": {}
+      },
+      {
+        "text": "Wait and observe.",
+        "nextPromptId": 12,
+        "narrativeOutcome": "You press into the shadows and watch, tension mounting as daylight slips away.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": 0
+        },
+        "setFlags": {}
+      }
+    ],
+    "backgroundEffect": {
+      "type": "particle",
+      "file": "ash_gray"
+    }
+  },
+  {
+    "id": 10,
+    "day": "Day 2",
+    "text": "The metal creaks beneath your weight. Broken glass bites your skin. Halfway over, your foot slips—a sharp pain shoots up your leg. You manage not to cry out. By the time you reach the other side, you're bleeding and breathing hard.",
+    "imageName": "day2_over_wreckage",
+    "choices": [
+      {
+        "text": "Stop and tend your wound.",
+        "nextPromptId": 13,
+        "narrativeOutcome": "You kneel and check the wound.",
+        "requiredBoolFlags": {
+          "hasMedkit": true
+        },
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 10,
+          "morDelta": 0
+        },
+        "setFlags": {
+          "hasMedkit": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      {
+        "text": "Ignore the pain, keep moving.",
+        "nextPromptId": 13,
+        "narrativeOutcome": "You grit your teeth and keep going, blood trickling into your boot.",
+        "consequence": {
+          "staDelta": -5,
+          "hpDelta": -5,
+          "morDelta": -5
+        },
+        "setFlags": {
+          "bleeding": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 11,
+    "day": "Day 2",
+    "text": "You wind through a labyrinth of ruined alleys, only to be blocked by three survivors. Gaunt, wary, and all too alert. They eye your pack, fingers twitching toward makeshift weapons. Tension thickens the air.",
+    "imageName": "day2_survivor_encounter",
+    "choices": [
+      {
+        "text": "Approach openly, hands raised.",
+        "nextPromptId": 14,
+        "narrativeOutcome": "You approach with open hands, showing you mean no harm.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": 1
+        },
+        "setFlags": {
+          "survivorsNeutral": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      {
+        "text": "Try to sneak around them.",
+        "nextPromptId": 15,
+        "narrativeOutcome": "You slip into the shadows, moving with caution.",
+        "consequence": {
+          "staDelta": -1,
+          "hpDelta": 0,
+          "morDelta": 0
+        },
+        "setFlags": {}
+      },
+      {
+        "text": "Offer a rare item.",
+        "narrativeOutcome": "",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": 1
+        },
+        "setFlags": {},
+        "branchOnFlag": {
+          "flag": "hasBattery",
+          "value": true,
+          "ifTrue": {
+            "nextPromptId": 14,
+            "narrativeOutcome": "You offer a rare battery as trade. The survivors give you a warning about the roads ahead.",
+            "setFlags": {
+              "hasBattery": {
+                "type": "bool",
+                "value": false
+              },
+              "gotTip": {
+                "type": "bool",
+                "value": true
+              }
+            }
+          },
+          "ifFalse": {
+            "nextPromptId": 18,
+            "narrativeOutcome": "You search your pack for something rare, but find nothing worth trading. The survivors turn away, unimpressed."
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 12,
+    "day": "Day 2",
+    "text": "You press into the shadows, letting time slip away. Hunger gnaws at you and fear grows sharper.",
+    "imageName": "day2_waiting",
+    "choices": [
+      {
+        "text": "Try to rest.",
+        "nextPromptId": 16,
+        "narrativeOutcome": "You close your eyes and let yourself drift, but sleep is dangerous here.",
+        "consequence": {
+          "staDelta": 1,
+          "hpDelta": 0,
+          "morDelta": 0
+        },
+        "setFlags": {}
+      },
+      {
+        "text": "Eat from your pack.",
+        "nextPromptId": 16,
+        "narrativeOutcome": "You force down a crust of bread, easing the ache in your gut.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": 1
+        },
+        "setFlags": {
+          "hasFood": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      {
+        "text": "Move out at last.",
+        "nextPromptId": 16,
+        "narrativeOutcome": "You leave your hiding spot and press on.",
+        "consequence": {
+          "staDelta": -1,
+          "hpDelta": 0,
+          "morDelta": 0
+        },
+        "setFlags": {}
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 13,
+    "day": "Day 2",
+    "text": "You limp onward. The road ahead opens up, but your wound aches with every step. You think you hear voices up ahead, or maybe it’s just the city whispering in your ear.",
+    "imageName": "day2_street_clears",
+    "choices": [
+      {
+        "text": "Push on with gritted teeth.",
+        "nextPromptId": 1313131,
+        "narrativeOutcome": "You press forward, determined not to let the pain stop you.",
+        "consequence": {
+          "staDelta": -5,
+          "hpDelta": -30,
+          "morDelta": -5
+        },
+        "setFlags": {}
+      },
+      {
+        "text": "Call out for help.",
+        "nextPromptId": 1313132,
+        "narrativeOutcome": "You shout into the emptiness. For a moment, there is only silence.",
+        "consequence": {},
+        "setFlags": {}
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 14,
+    "day": "Day 2",
+    "text": "The survivors nod warily and step aside, giving you a narrow path through the rubble. One mutters a warning about the 'shadows' further up the road. For a fleeting moment, you remember what trust felt like.",
+    "imageName": "day2_safe_passage",
+    "choices": [
+      {
+        "text": "Thank them and move on.",
+        "nextPromptId": 17,
+        "narrativeOutcome": "You offer a quiet word of thanks before slipping away.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": 1
+        },
+        "setFlags": {}
+      },
+      {
+        "text": "Ask for more information.",
+        "nextPromptId": 17,
+        "narrativeOutcome": "You ask for more. They reveal a shortcut through the ruins.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": 0
+        },
+        "setFlags": {
+          "hasMap": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 15,
+    "day": "Day 2",
+    "text": "One of the survivors grabs your arm. You try to pull free, but another jams a pipe against your chest. In moments, your bag is lighter, your nerves raw.",
+    "imageName": "day2_hostile_survivors",
+    "choices": [
+      {
+        "text": "Fight back.",
+        "nextPromptId": 17,
+        "narrativeOutcome": "You struggle and manage to keep most of your supplies, but not unscathed.",
+        "consequence": {
+          "staDelta": -1,
+          "hpDelta": -1,
+          "morDelta": 0
+        },
+        "setFlags": {}
+      },
+      {
+        "text": "Give up your supplies.",
+        "nextPromptId": 17,
+        "narrativeOutcome": "You surrender your pack. Survival is more important than pride.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": -1
+        },
+        "setFlags": {
+          "hasWater": {
+            "type": "int",
+            "value": 0
+          },
+          "hasFood": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 16,
+    "day": "Day 2",
+    "text": "While you rest, shadows detach from the ruins—another band of scavengers. You wake to find someone rifling your bag.",
+    "imageName": "day2_alley_ambush",
+    "choices": [
+      {
+        "text": "Scare them off with your flashlight or lighter.",
+        "nextPromptId": 17,
+        "narrativeOutcome": "You flash a beam of light and the thieves scatter.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": 1
+        },
+        "setFlags": {}
+      },
+      {
+        "text": "Let them take something and stay hidden.",
+        "nextPromptId": 17,
+        "narrativeOutcome": "You stay quiet as they take some supplies and disappear.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": -1
+        },
+        "setFlags": {
+          "hasFood": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 17,
+    "day": "Day 2",
+    "text": "You finally leave the worst of the city behind. Ruined buildings give way to blasted fields and distant mountains. The air feels different—emptier, somehow cleaner. For the first time in days, you let yourself imagine that Haven might be real.",
+    "imageName": "day2_outskirts",
+    "choices": [
+      {
+        "text": "Head toward the HQ.",
+        "nextPromptId": 1717171,
+        "narrativeOutcome": "You push forward, hope flickering in your chest.",
+        "consequence": {
+          "staDelta": 0,
+          "hpDelta": 0,
+          "morDelta": 5
+        },
+        "setFlags": {}
+      }
+    ],
+    "backgroundEffect": {
+      "type": "particle",
+      "file": "ash_gray"
+    }
+  },
+  {
+    "id": 18,
+    "day": "Day 2",
+    "text": "You fumble through your pack, searching for something valuable to trade. But your fingers close on nothing but empty wrappers and scraps. The survivors’ eyes narrow with disappointment. One spits at your feet, and another turns away, muttering. With nothing left to offer, you are forced to back away, nerves buzzing with shame and unease.",
+    "imageName": "day2_trade_fail",
+    "choices": [
+      {
+        "text": "Retreat and look for another way.",
+        "nextPromptId": 17,
+        "narrativeOutcome": "You slip away from the survivors, avoiding their gaze."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 19,
+    "day": "Day 3",
+    "text": "You stand before the shattered perimeter of the old research district. Beyond the broken barricades looms the headquarters—your boss’s last stronghold and the only place you’ll find the Scutum Project USB.",
+    "imageName": "day3_prompt_hq_perimeter",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Peer through a gap in the wall.",
+        "soundEffect": "",
+        "nextPromptId": 20,
+        "consequence": {
+          "morDelta": 2,
+          "timeDelta": 5
+        },
+        "narrativeOutcome": "You spot two guards pacing the courtyard—and a narrow service door to your right.",
+        "setFlags": {
+          "spiedHQ": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      {
+        "text": "Walk down the main road.",
+        "soundEffect": "",
+        "nextPromptId": 20,
+        "consequence": {
+          "morDelta": -1,
+          "timeDelta": 3
+        },
+        "narrativeOutcome": "A single guard glances your way. You duck behind debris just in time."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 20,
+    "day": "Day 3",
+    "text": "A rusted iron gate bars your way, its lock fused by years of neglect and heat.",
+    "imageName": "day3_prompt_locked_gate",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Force it open with your crowbar.",
+        "soundEffect": "",
+        "nextPromptId": 2020201,
+        "consequence": {
+          "hpDelta": -2,
+          "morDelta": 1,
+          "timeDelta": 10
+        },
+        "narrativeOutcome": "The gate screeches ajar—your ears ring as you brace for pursuit."
+      },
+      {
+        "text": "Search for a side route.",
+        "soundEffect": "",
+        "nextPromptId": 2020202,
+        "consequence": {
+          "morDelta": 2,
+          "timeDelta": 15
+        },
+        "narrativeOutcome": "You find a half-buried service door under tangled vines, buying you a moment of silence."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 22,
+    "day": "Day 3",
+    "text": "A lone guard blocks the corridor intersection, leaning on a makeshift spear.",
+    "imageName": "day3_prompt_guard_post",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Offer him a ration to pass.",
+        "soundEffect": "",
+        "nextPromptId": 2222221,
+        "consequence": {
+          "morDelta": 2,
+          "timeDelta": 5
+        },
+        "narrativeOutcome": "He smirks, pockets the food, and steps aside."
+      },
+      {
+        "text": "Sneak past when his back is turned.",
+        "soundEffect": "",
+        "nextPromptId": 2222222,
+        "consequence": {
+          "hpDelta": -1,
+          "morDelta": 1,
+          "timeDelta": 7
+        },
+        "narrativeOutcome": "You brush past silently—and his boot nearly catches you as you slip by."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 23,
+    "day": "Day 3",
+    "text": "You emerge into a debris-strewn lobby—shattered tiles, overturned furniture, and a dusty reception desk.",
+    "choices": [
+      {
+        "text": "Press on toward the office stairwell.",
+        "nextPromptId": 24,
+        "requiredIntFlags": {
+          "elapsedTime": {
+            "max": 40
+          }
+        },
+        "consequence": {
+          "timeDelta": 2
+        },
+        "narrativeOutcome": "You slip through before shift change, heading for the stairs."
+      },
+      {
+        "text": "Press on toward the office stairwell.",
+        "nextPromptId": 2323231,
+        "requiredIntFlags": {
+          "elapsedTime": {
+            "min": 50
+          }
+        },
+        "consequence": {
+          "timeDelta": 2
+        },
+        "narrativeOutcome": "You arrive as the shift change erupts—uniformed guards swarm the lobby."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 24,
+    "day": "Day 3",
+    "text": "The staircase spirals upward; many steps are broken or slick with dust.",
+    "imageName": "day3_prompt_stairwell",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Climb slowly and carefully.",
+        "soundEffect": "",
+        "nextPromptId": 25,
+        "consequence": {
+          "morDelta": 1,
+          "timeDelta": 6
+        },
+        "narrativeOutcome": "You pick your way up without incident."
+      },
+      {
+        "text": "Dash up to save time.",
+        "soundEffect": "",
+        "nextPromptId": 25,
+        "consequence": {
+          "hpDelta": -1,
+          "morDelta": -1,
+          "timeDelta": 4
+        },
+        "narrativeOutcome": "A rotten step snaps—your ankle twists as you tumble."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 25,
+    "day": "Day 3",
+    "text": "A solid wood door stands before you, secured by a heavy padlock and keypad.",
+    "imageName": "day3_prompt_office_door",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Pick the padlock with your wire.",
+        "soundEffect": "",
+        "nextPromptId": 26,
+        "consequence": {
+          "morDelta": 2,
+          "timeDelta": 5
+        },
+        "narrativeOutcome": "The lock clicks open—your heart pounds."
+      },
+      {
+        "text": "Knock and bluff you’re authorized personnel.",
+        "soundEffect": "",
+        "nextPromptId": 26,
+        "consequence": {
+          "morDelta": -1,
+          "timeDelta": 3
+        },
+        "narrativeOutcome": "Silence. You risk alerting any nearby guards."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 26,
+    "day": "Day 3",
+    "text": "Behind the desk sits a steel safe—your boss’s digital lock must guard the only copy of the Scutum Project software.",
+    "imageName": "day3_prompt_safe",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Enter the combination from your old notes.",
+        "soundEffect": "",
+        "nextPromptId": 27,
+        "consequence": {
+          "morDelta": 3,
+          "timeDelta": 2
+        },
+        "narrativeOutcome": "The safe clicks open. Inside lies a rugged USB stick stamped “Scutum Project.”",
+        "setFlags": {
+          "gotUSB": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      {
+        "text": "Pry it open with your crowbar.",
+        "soundEffect": "",
+        "nextPromptId": 27,
+        "consequence": {
+          "hpDelta": -1,
+          "morDelta": -1,
+          "timeDelta": 6
+        },
+        "narrativeOutcome": "The door resists. Your crowbar splinters, and you slice your palm on sharp steel."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 27,
+    "day": "Day 3",
+    "text": "You cradle the encrypted USB stick—its circuits holding the future of the magnetosphere restarter.",
+    "imageName": "day3_prompt_usb_in_hand",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Tuck it safely into your pack.",
+        "soundEffect": "",
+        "nextPromptId": 28,
+        "consequence": {
+          "morDelta": 1,
+          "timeDelta": 1
+        },
+        "narrativeOutcome": "The Scutum stick slides into your pouch beneath spare batteries, its data intact."
+      },
+      {
+        "text": "Plug it into your portable reader to verify integrity.",
+        "soundEffect": "",
+        "nextPromptId": 28,
+        "consequence": {
+          "morDelta": -1,
+          "timeDelta": 3
+        },
+        "narrativeOutcome": "The reader hums, then flashes “OK.” You confirm the software is uncorrupted—but precious time ticks by."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 28,
+    "day": "Day 3",
+    "text": "Key secured, you must choose your path back through the labyrinthine halls.",
+    "imageName": "day3_prompt_escape_route",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Retrace your entry steps.",
+        "soundEffect": "",
+        "nextPromptId": 29,
+        "requiredIntFlags": {
+          "elapsedTime": {
+            "max": 59
+          }
+        },
+        "consequence": {
+          "timeDelta": 7
+        },
+        "narrativeOutcome": "Familiar but risk repeated patrols."
+      },
+      {
+        "text": "Strike out through an old elevator shaft.",
+        "soundEffect": "",
+        "nextPromptId": 29,
+        "requiredIntFlags": {
+          "elapsedTime": {
+            "max": 59
+          }
+        },
+        "consequence": {
+          "morDelta": -2,
+          "timeDelta": 10
+        },
+        "narrativeOutcome": "The metal groans as you ascend. It saves time but draws unwanted creaks through the silence."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    },
+    "timeoutRedirect": {
+      "flag": "elapsedTime",
+      "min": 60,
+      "redirectToPromptId": 2828281
+    }
+  },
+  {
+    "id": 29,
+    "day": "Day 3",
+    "text": "You burst through the HQ’s side exit just as the roof rumbles and alarms wail. Seconds later, a shockwave shatters the doors behind you in a plume of dust and debris. You sprint toward the highway. Your path to Haven lies ahead.",
+    "imageName": "day3_prompt_hq_escape_success",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Continue",
+        "soundEffect": "",
+        "nextPromptId": 30,
+        "setFlags": {
+          "elapsedTime": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 30,
+    "day": "Day 3",
+    "text": "[END OF CURRENT STORY CONTENT] You're clear of the HQ and racing for Haven, the Key secured. This is as far as the story has been written so far - the road to Haven, and whatever waits there, still needs to be written.",
+    "imageName": "",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Return to Main Menu",
+        "nextPromptId": -3000,
+        "narrativeOutcome": ""
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    },
+    "isPlaceholder": true
+  },
+  {
+    "id": 44441,
+    "day": "Day 1",
+    "text": "As you leave the pharmacy in hurry with every last scrap, you feel a sting of guilt. But your mind quickly turns to survival. You notice the Sun starts to burn with more power. Suddenly, you’re hit with a feeling of weakness. You feel dizzy. Your body protests the day’s stress. Before you can steady yourself, everything fades to black. Sometimes, even the best preparations are not enough in the wasteland…",
+    "imageName": "day1_dizzyness",
+    "soundEffect": "day1_heartbeat_fadeout",
+    "choices": [
+      {
+        "text": "Fade into darkness.",
+        "soundEffect": "",
+        "nextPromptId": -1,
+        "consequence": {
+          "staDelta": -70
+        },
+        "narrativeOutcome": "Your journey ends here, claimed by the wasteland."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 44442,
+    "day": "Day 1",
+    "text": "With some supplies in your pack and a touch of relief in your chest, you step back onto the cracked street. Suddenly, the silence shatters—a desperate figure lunges from behind a burned-out car. The world blurs as you’re knocked to the ground, pain flashing through your body. In the chaos, your grip on survival feels more fragile than ever.",
+    "imageName": "day1_attack_after_pharmacy",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "You're weak but you fight back!",
+        "nextPromptId": -1,
+        "requiredIntFlags": {
+          "hp": {
+            "min": 21
+          }
+        },
+        "disabledReason": "Your health is >20.",
+        "narrativeOutcome": "You try to resist, but your injuries overwhelm you. Darkness swallows you as the world slips away.",
+        "consequence": {
+          "hpDelta": -30
+        }
+      },
+      {
+        "text": "Fight back, pushing your battered body to its limits.",
+        "nextPromptId": 7,
+        "requiredIntFlags": {
+          "hp": {
+            "max": 20
+          }
+        },
+        "disabledReason": "Your health is <20.",
+        "narrativeOutcome": "You muster your remaining strength, shoving the attacker aside and stumbling away into the shadows.",
+        "consequence": {
+          "hpDelta": -10,
+          "staDelta": -10
+        }
+      },
+      {
+        "text": "Give up your supplies and retreat into the darkness.",
+        "nextPromptId": 7,
+        "narrativeOutcome": "You escape, but your pack is lighter and your heart heavier. The night awaits.",
+        "consequence": {
+          "hpDelta": -10,
+          "morDelta": -10,
+          "staDelta": -10
+        },
+        "setFlags": {
+          "hasWater": {
+            "type": "int",
+            "value": 1
+          },
+          "hasFood": {
+            "type": "int",
+            "value": 0
+          },
+          "hasRope": {
+            "type": "bool",
+            "value": false
+          },
+          "hasLighter": {
+            "type": "bool",
+            "value": true
+          },
+          "hasFlashlight": {
+            "type": "bool",
+            "value": false
+          },
+          "hasMedkit": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 44443,
+    "day": "Day 1",
+    "text": "You hear angry voices at the pharmacy door. Gripping your scavenged supplies, you bolt for the back, vaulting over a crumbling counter and crashing through a splintered window. As you slip out the pharmacy's back window, angry voices ring out behind you. You jump over shattered crates. Suddenly, your foot catches on twisted metal and you crash hard, pain exploding in your leg. Gritting your teeth, you limp away from the pharmacy, blood soaking your pants. Later, hidden in a ruined stairwell, you fumble with trembling hands to bandage the wound and swallow a few precious antibiotics, both taken from the pharmacy's shelves. The bleeding slows, but the pain lingers and exhaustion weighs heavy.",
+    "imageName": "day1_stairwell_triage",
+    "choices": [
+      {
+        "text": "Push onward, determined not to waste your hard-earned supplies.",
+        "nextPromptId": 44442,
+        "consequence": {
+          "hpDelta": -25
+        },
+        "narrativeOutcome": "You barely escape with your life, but at a cost."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 55551,
+    "day": "Day 1",
+    "text": "You burst out the back door of the pharmacy, lungs burning as you sprint into the maze of alleys. The angry shouts of scavengers echo behind you, but you don’t dare look back. Your foot catches on broken pavement; you stumble, scrambling up with scraped hands. You’ve lost some supplies in the chaos—maybe more than you realize. The city feels even colder and emptier as dusk creeps in.",
+    "imageName": "day1_alley_escape",
+    "choices": [
+      {
+        "text": "Catch your breath and check your pack.",
+        "nextPromptId": 7,
+        "consequence": {
+          "staDelta": -10,
+          "morDelta": -5
+        },
+        "narrativeOutcome": "You hide in the shadows, shaking, and realize you've lost almost everything except one sandwich and little water.",
+        "setFlags": {
+          "hasWater": {
+            "type": "int",
+            "value": 1
+          },
+          "hasFood": {
+            "type": "int",
+            "value": 1
+          },
+          "hasRope": {
+            "type": "bool",
+            "value": false
+          },
+          "hasFlashlight": {
+            "type": "bool",
+            "value": false
+          },
+          "hasMedkit": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      {
+        "text": "Keep running and don’t stop until you’re sure they’re gone.",
+        "nextPromptId": 7,
+        "narrativeOutcome": "You run and run, dropping only a single sandwich. By the time you stop, you're exhausted but safe for now.",
+        "consequence": {
+          "staDelta": -15,
+          "morDelta": -10
+        },
+        "setFlags": {
+          "hasFood": {
+            "type": "int",
+            "value": 1
+          },
+          "hasWater": {
+            "type": "int",
+            "value": 2
+          },
+          "hasRope": {
+            "type": "bool",
+            "value": true
+          },
+          "hasFlashlight": {
+            "type": "bool",
+            "value": true
+          },
+          "hasMedkit": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 66661,
+    "day": "Day 1",
+    "text": "As the sun begins its descent, you trudge along empty streets, keeping your head low. Without supplies from the pharmacy, every ache and thirst feels sharper. The world seems to grow quieter and colder with each step. Shadows stretch along broken sidewalks, and a chill wind rattles loose glass in the windows overhead. \nNear an abandoned playground, you spot movement — a stray dog rummaging in a toppled trash can. The animal is thin, with patches of fur missing, but it hasn’t noticed you yet. Hunger tugs at your insides. The day’s choices settle heavy on your shoulders. Dusk is coming fast.",
+    "imageName": "day1_empty_street_playground",
+    "choices": [
+      {
+        "text": "Approach the dog and try to share food.",
+        "soundEffect": "dog_barking_twice",
+        "nextPromptId": 7,
+        "narrativeOutcome": "You crouch low and hold out a half of your sandwich. The dog sniffs your hand, tail wagging uncertainly. It takes the sandwich and runs. For a moment, you feel less alone.",
+        "consequence": {
+          "morDelta": 5
+        },
+        "setFlags": {
+          "hasFood": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      {
+        "text": "Search the playground for anything useful.",
+        "nextPromptId": 7,
+        "narrativeOutcome": "You search beneath broken benches and twisted slides. Your hands close on something useful in the dirt. A small knife.",
+        "consequence": {
+          "staDelta": -5,
+          "morDelta": 0,
+          "hpDelta": 0
+        },
+        "setFlags": {
+          "hasKnife": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      {
+        "text": "Move on and find a place to sleep before dark.",
+        "nextPromptId": 7,
+        "narrativeOutcome": "You keep walking, pushing past the ache in your belly, intent on finding shelter before night falls.",
+        "consequence": {
+          "staDelta": -5,
+          "morDelta": 0,
+          "hpDelta": 0
+        },
+        "setFlags": {}
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 1313131,
+    "day": "Day 2",
+    "text": "You push on, lungs burning, ribs aching. The ground rises into a jagged ridge — the last barrier. Each step is fire. You crest the top, barely conscious, and drop to your knees. Blood soaks your side. The medkit’s in your pack. You might still have time... if you can move.",
+    "imageName": "day2_pushing_on_injured",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Use a medkit and stabilize.",
+        "soundEffect": "",
+        "nextPromptId": 17,
+        "requiredBoolFlags": {
+          "hasMedkit": true
+        },
+        "consequence": {
+          "hpDelta": 20,
+          "morDelta": 5
+        },
+        "narrativeOutcome": "You tear open the last medkit with shaking fingers, injecting the stabilizer and wrapping the wound tight. The world spins... then steadies. You lie back against the stone, breathing shallow, but alive.",
+        "setFlags": {
+          "hasMedkit": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      {
+        "text": "Collapse and let go.",
+        "soundEffect": "",
+        "nextPromptId": -99,
+        "consequence": {
+          "hpDelta": -50
+        },
+        "narrativeOutcome": "Your hand fumbles at the medkit pouch... but you can’t even lift the flap. Darkness edges in. You collapse beside a weathered road sign half-buried in ash.",
+        "setFlags": {}
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 1313132,
+    "day": "Day 2",
+    "text": "Your voice cracked as you called out, desperate and hoarse. For a moment, there was nothing but wind—and then, the sound of boots on gravel. A tall, wiry man in tattered layers appeared from behind a collapsed billboard. He raised a hand, cautious but not hostile. “I heard you,” he said. “You look like you’ve been through hell.” He offers a leather water pouch and gestures to a shady spot under a rusted overpass. You take the water. It’s clean. Life-saving. As you sit, he eyes your backpack. “I’ve got nothing left,” he mutters. “You got anything to spare?”",
+    "imageName": "day2_meeting_caleb",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Share some food and water.",
+        "soundEffect": "",
+        "nextPromptId": 17,
+        "requiredIntFlags": {
+          "hasFood": {
+            "min": 2
+          },
+          "hasWater": {
+            "min": 2
+          }
+        },
+        "consequence": {
+          "hpDelta": 5,
+          "morDelta": 5
+        },
+        "narrativeOutcome": "The man opens up. His name is Caleb, and he once worked logistics for a convoy for The Haven. He marks a safer route on your map and warns of raider traps ahead. “People like you… we need more of that,” he says.",
+        "setFlags": {
+          "hasFood": {
+            "type": "int",
+            "value": 1
+          },
+          "hasWater": {
+            "type": "int",
+            "value": 1
+          },
+          "calebRelationship": {
+            "type": "string",
+            "value": "ally"
+          }
+        }
+      },
+      {
+        "text": "Keep your supplies.",
+        "soundEffect": "",
+        "nextPromptId": 17,
+        "requiredStringFlags": {},
+        "consequence": {
+          "morDelta": -5
+        },
+        "narrativeOutcome": "You glance at your half-empty pack and shake your head. “Can’t risk it,” you say. The man gives a bitter laugh and stands.",
+        "setFlags": {
+          "calebRelationship": {
+            "type": "string",
+            "value": "foe"
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 1717171,
+    "day": "Day 3 - Info prompt",
+    "text": "The Scutum Project HQ stands ahead. Your objective: infiltrate the building, recover the Key, and escape before the government lock-down in 60 minutes. You can track elapsed time in your Inventory panel.",
+    "imageName": "day3_info_prompt",
+    "choices": [
+      {
+        "text": "Move to the HQ perimeter",
+        "nextPromptId": 19,
+        "narrativeOutcome": ""
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 2020201,
+    "day": "Day 3",
+    "text": "The gate’s roar echoes down the compound—footsteps thunder behind you.",
+    "imageName": "day3_prompt_alarm",
+    "soundEffect": "alarm",
+    "choices": [
+      {
+        "text": "Stand and fight the first guard.",
+        "soundEffect": "sword_clash",
+        "nextPromptId": 22,
+        "consequence": {
+          "hpDelta": -2,
+          "morDelta": 1,
+          "timeDelta": 7
+        },
+        "narrativeOutcome": "You land a blow but take one in return—you slip into the corridor bloodied."
+      },
+      {
+        "text": "Dive behind rubble and hide.",
+        "soundEffect": "thud",
+        "nextPromptId": 22,
+        "consequence": {
+          "morDelta": -2,
+          "timeDelta": 5
+        },
+        "narrativeOutcome": "Your heart pounds as you press against stone—eventually the guard moves on."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 2020202,
+    "day": "Day 3",
+    "text": "The service door yawns open into a dark corridor littered with broken cables.",
+    "imageName": "day3_prompt_service_corridor",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Slip inside quietly.",
+        "soundEffect": "",
+        "nextPromptId": 22,
+        "consequence": {
+          "morDelta": 1,
+          "timeDelta": 4
+        },
+        "narrativeOutcome": "You melt into the shadows, footsteps silent."
+      },
+      {
+        "text": "Push it open wide and rush in.",
+        "soundEffect": "crash",
+        "nextPromptId": 22,
+        "consequence": {
+          "morDelta": -2,
+          "timeDelta": 6
+        },
+        "narrativeOutcome": "The panel slams down behind you—your cover’s blown, but you’re through."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 2222221,
+    "day": "Day 3",
+    "text": "The guard pockets your ration but then nods toward a hidden door to the side. \"This way, but don't slow down,\" he warns.",
+    "imageName": "day3_prompt_guard_shortcut",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Follow him through the hidden door.",
+        "soundEffect": "",
+        "nextPromptId": 23,
+        "consequence": {
+          "morDelta": 1,
+          "timeDelta": 3
+        },
+        "narrativeOutcome": "He leads you through a narrow service passage, saving time but leaving you cramped.",
+        "setFlags": {
+          "foundGuardShortcut": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      {
+        "text": "Refuse and slip past while he's distracted.",
+        "soundEffect": "",
+        "nextPromptId": 23,
+        "consequence": {
+          "morDelta": -1,
+          "timeDelta": 5
+        },
+        "narrativeOutcome": "He frowns but doesn’t stop you; you duck into the corridor on your own."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 2222222,
+    "day": "Day 3",
+    "text": "You press against the wall and slip past the guard’s blind side. Your heart pounds as you steal into the shadowed hall.",
+    "imageName": "day3_prompt_guard_sneak",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Dash down the corridor.",
+        "soundEffect": "thud",
+        "nextPromptId": 23,
+        "consequence": {
+          "morDelta": 1,
+          "timeDelta": 4
+        },
+        "narrativeOutcome": "You burst into the corridor unobserved, lungs burning."
+      },
+      {
+        "text": "Wait for him to turn back and then move.",
+        "soundEffect": "",
+        "nextPromptId": 23,
+        "consequence": {
+          "morDelta": -1,
+          "timeDelta": 6
+        },
+        "narrativeOutcome": "He glances over, you freeze, then slip away when his gaze shifts."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 2323231,
+    "day": "Day 3",
+    "text": "The doors slam open and guards flood in. You’re trapped in the lobby as alarms blare.",
+    "choices": [
+      {
+        "text": "Fight your way out.",
+        "nextPromptId": -1,
+        "consequence": {
+          "hpDelta": -3,
+          "morDelta": -2
+        },
+        "narrativeOutcome": "You brawl with two guards, but their numbers overwhelm you."
+      },
+      {
+        "text": "Dive behind the desk and hide.",
+        "nextPromptId": 24,
+        "consequence": {
+          "morDelta": -1
+        },
+        "narrativeOutcome": "You curl into a shadow as they pass by—one guard glances at you but moves on."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 2828281,
+    "day": "Day 3",
+    "text": "Alarms echo through the corridors—government drones flood the HQ. The building is locked down and you’re trapped inside.",
+    "choices": [
+      {
+        "text": "Accept Fate",
+        "nextPromptId": -28,
+        "consequence": {
+          "hpDelta": -100
+        },
+        "narrativeOutcome": "The facility seals…and your hopes with it."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  }
+]
