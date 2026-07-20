@@ -117,9 +117,23 @@ func select_choice(choice: Dictionary) -> void:
 	if choice.has("branchOnFlag"):
 		var branch: Dictionary = choice["branchOnFlag"]
 		var flag_name: String = branch.get("flag", "")
-		var expected = branch.get("value", true)
-		var actual = flags.get(flag_name, false)
-		var outcome: Dictionary = branch["ifTrue"] if actual == expected else branch["ifFalse"]
+		var condition_met: bool
+
+		if branch.has("min") or branch.has("max"):
+			# Threshold mode - for numeric flags like trust/relationship scores.
+			var value := _resolve_int_value(flag_name)
+			condition_met = true
+			if branch.has("min") and value < int(branch["min"]):
+				condition_met = false
+			if branch.has("max") and value > int(branch["max"]):
+				condition_met = false
+		else:
+			# Exact-match mode (original behavior) - for bool/string flags.
+			var expected = branch.get("value", true)
+			var actual = flags.get(flag_name, false)
+			condition_met = (actual == expected)
+
+		var outcome: Dictionary = branch["ifTrue"] if condition_met else branch["ifFalse"]
 
 		next_id = int(outcome.get("nextPromptId", next_id))
 		if outcome.has("narrativeOutcome"):

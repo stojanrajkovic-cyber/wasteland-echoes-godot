@@ -970,7 +970,7 @@
   {
     "id": 27,
     "day": "Day 3",
-    "text": "You cradle the encrypted USB stick—its circuits holding the future of the magnetosphere restarter.",
+    "text": "You cradle the Key in your palm—a small, sealed override token, cold and impossibly solid against everything else that's fallen apart today.",
     "imageName": "day3_prompt_usb_in_hand",
     "soundEffect": "",
     "choices": [
@@ -982,7 +982,7 @@
           "morDelta": 1,
           "timeDelta": 1
         },
-        "narrativeOutcome": "The Scutum stick slides into your pouch beneath spare batteries, its data intact."
+        "narrativeOutcome": "The Key slides into your pouch beneath spare batteries, secure."
       },
       {
         "text": "Plug it into your portable reader to verify integrity.",
@@ -992,7 +992,7 @@
           "morDelta": -1,
           "timeDelta": 3
         },
-        "narrativeOutcome": "The reader hums, then flashes “OK.” You confirm the software is uncorrupted—but precious time ticks by."
+        "narrativeOutcome": "The reader hums, then flashes \"AUTHENTICATED.\" The Key's signature is intact—but precious time ticks by."
       }
     ],
     "backgroundEffect": {
@@ -1071,7 +1071,116 @@
   {
     "id": 30,
     "day": "Day 3",
-    "text": "[END OF CURRENT STORY CONTENT] You're clear of the HQ and racing for Haven, the Key secured. This is as far as the story has been written so far - the road to Haven, and whatever waits there, still needs to be written.",
+    "text": "You collapse against the burnt husk of a car three blocks from HQ, chest heaving. Behind you, the alarms are already fading into the general static of the ruined city—no one followed. The Key sits cold and solid in your pocket. Your hands won't stop shaking.",
+    "imageName": "day3_prompt_triage",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Stop. Breathe. Tend to what you can before you move again.",
+        "soundEffect": "",
+        "nextPromptId": 31,
+        "consequence": {
+          "hpDelta": 10,
+          "staDelta": 6,
+          "timeDelta": 20
+        },
+        "narrativeOutcome": "You force yourself still long enough to wrap what needs wrapping and drink what's left of your water. It costs you time you don't have, but your body thanks you for it."
+      },
+      {
+        "text": "No time. Put distance between yourself and HQ first.",
+        "soundEffect": "",
+        "nextPromptId": 31,
+        "consequence": {
+          "staDelta": -6,
+          "timeDelta": 5
+        },
+        "narrativeOutcome": "You're back on your feet before the shaking even stops. Adrenaline will only carry you so far—but for now, it's carrying you."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 31,
+    "day": "Day 3",
+    "text": "A few streets on, the road forks toward the overpass Caleb once marked on your map—if he meant what he said, and if you gave him reason to keep his word.",
+    "imageName": "day3_prompt_overpass_approach",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Head for the overpass.",
+        "soundEffect": "",
+        "branchOnFlag": {
+          "flag": "calebTrust",
+          "min": 20,
+          "ifTrue": {
+            "nextPromptId": 32
+          },
+          "ifFalse": {
+            "nextPromptId": 33
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 32,
+    "day": "Day 3",
+    "text": "Caleb is exactly where he said he'd be, leaning against a rusted guardrail like he's been waiting for hours—maybe he has been. He straightens when he sees you, relief breaking across his face before he catches himself and hides it. “Figured you might actually make it,” he says. “Guess I'll stick around and see how far you get.”",
+    "imageName": "day3_prompt_caleb_reunion",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Continue",
+        "soundEffect": "",
+        "nextPromptId": 100,
+        "setFlags": {
+          "calebCompanion": {
+            "type": "bool",
+            "value": true
+          },
+          "calebStatus": {
+            "type": "string",
+            "value": "alive"
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 33,
+    "day": "Day 3",
+    "text": "The overpass is empty. Wind moves through torn plastic sheeting where Caleb said he'd be—but there's no one here, and no sign anyone ever was. Maybe he never meant it. Maybe he just never made it. Either way, the road ahead is yours alone.",
+    "imageName": "day3_prompt_overpass_empty",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Continue",
+        "soundEffect": "",
+        "nextPromptId": 100,
+        "setFlags": {
+          "calebCompanion": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 100,
+    "day": "Day 4",
+    "text": "[END OF CURRENT STORY CONTENT] Chapter 1 is complete—the Key is secured, and the road to Haven stretches out ahead. Chapter 2: The Long Road hasn't been written yet.",
     "imageName": "",
     "soundEffect": "",
     "choices": [
@@ -1403,9 +1512,9 @@
             "type": "int",
             "value": 1
           },
-          "calebRelationship": {
-            "type": "string",
-            "value": "ally"
+          "calebTrust": {
+            "type": "int",
+            "value": 30
           }
         }
       },
@@ -1419,9 +1528,9 @@
         },
         "narrativeOutcome": "You glance at your half-empty pack and shake your head. “Can’t risk it,” you say. The man gives a bitter laugh and stands.",
         "setFlags": {
-          "calebRelationship": {
-            "type": "string",
-            "value": "foe"
+          "calebTrust": {
+            "type": "int",
+            "value": -30
           }
         }
       }
