@@ -13,9 +13,9 @@ const TOAST_DURATION := 4.0
 
 @onready var background: TextureRect = $Background
 @onready var day_label: Label = $MainVBox/TopBarMargin/TopBar/DayLabel
-@onready var hp_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/HPLabel
-@onready var sta_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/StaLabel
-@onready var mor_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/MorLabel
+@onready var hp_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/HPBadge/HPLabel
+@onready var sta_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/StaBadge/StaLabel
+@onready var mor_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/MorBadge/MorLabel
 @onready var toast_panel: PanelContainer = $MainVBox/BottomMargin/BottomVBox/ToastPanel
 @onready var toast_label: Label = $MainVBox/BottomMargin/BottomVBox/ToastPanel/ToastLabel
 @onready var prompt_label: Label = $MainVBox/BottomMargin/BottomVBox/PromptPanel/PromptLabel

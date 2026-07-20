@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scenes/game_view.gd" id="1"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/button_tap.wav" id="2"]
@@ -24,6 +24,39 @@ content_margin_left = 20.0
 content_margin_top = 16.0
 content_margin_right = 20.0
 content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.5, 0.15, 0.15, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.45, 0.42, 0.12, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0.15, 0.22, 0.48, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
 
 [node name="GameView" type="Control"]
 anchors_preset = 15
@@ -72,7 +105,7 @@ theme_override_constants/separation = 20
 
 [node name="DayLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "Day 1"
 
 [node name="TopSpacer" type="Control" parent="MainVBox/TopBarMargin/TopBar"]
@@ -81,24 +114,36 @@ size_flags_horizontal = 3
 
 [node name="StatsBox" type="HBoxContainer" parent="MainVBox/TopBarMargin/TopBar"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 16
 
-[node name="HPLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
+[node name="HPBadge" type="PanelContainer" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.85, 0.3, 0.3, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_styles/panel = SubResource("3")
+
+[node name="HPLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/HPBadge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.55, 1)
+theme_override_font_sizes/font_size = 32
 text = "HP 50"
 
-[node name="StaLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
+[node name="StaBadge" type="PanelContainer" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.75, 0.75, 0.35, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_styles/panel = SubResource("4")
+
+[node name="StaLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/StaBadge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.5, 1)
+theme_override_font_sizes/font_size = 32
 text = "STA 40"
 
-[node name="MorLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
+[node name="MorBadge" type="PanelContainer" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.55, 0.6, 0.85, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_styles/panel = SubResource("5")
+
+[node name="MorLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/MorBadge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 32
 text = "MOR 50"
 
 [node name="MiddleSpacer" type="Control" parent="MainVBox"]

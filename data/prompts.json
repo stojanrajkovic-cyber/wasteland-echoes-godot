@@ -1137,7 +1137,7 @@
       {
         "text": "Continue",
         "soundEffect": "",
-        "nextPromptId": 100,
+        "nextPromptId": 101,
         "setFlags": {
           "calebCompanion": {
             "type": "bool",
@@ -1164,7 +1164,7 @@
       {
         "text": "Continue",
         "soundEffect": "",
-        "nextPromptId": 100,
+        "nextPromptId": 101,
         "setFlags": {
           "calebCompanion": {
             "type": "bool",
@@ -1178,9 +1178,131 @@
     }
   },
   {
-    "id": 100,
+    "id": 101,
     "day": "Day 4",
-    "text": "[END OF CURRENT STORY CONTENT] Chapter 1 is complete—the Key is secured, and the road to Haven stretches out ahead. Chapter 2: The Long Road hasn't been written yet.",
+    "text": "Dawn breaks grey over the ruins. Ash settles like snow that never melts. Whatever's ahead, it starts with picking a direction.",
+    "imageName": "day4_dawn_ruins",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Continue",
+        "soundEffect": "",
+        "branchOnFlag": {
+          "flag": "calebCompanion",
+          "value": true,
+          "ifTrue": {
+            "nextPromptId": 102
+          },
+          "ifFalse": {
+            "nextPromptId": 103
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 102,
+    "day": "Day 4",
+    "text": "Caleb falls into step beside you without a word for a while, boots crunching ash. Finally: “You didn't have to come back for anyone. Most people wouldn't have.” He says it like he's still deciding what to make of you.",
+    "imageName": "day4_caleb_walking",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "“I wasn't about to leave you standing there.”",
+        "soundEffect": "",
+        "nextPromptId": 103,
+        "consequence": {
+          "morDelta": 1
+        },
+        "setFlags": {
+          "calebTrust": {
+            "type": "int",
+            "value": 10
+          }
+        },
+        "narrativeOutcome": "Something in his shoulders eases, just slightly."
+      },
+      {
+        "text": "“Don't read too much into it. I just needed the company.”",
+        "soundEffect": "",
+        "nextPromptId": 103,
+        "setFlags": {
+          "calebTrust": {
+            "type": "int",
+            "value": -5
+          }
+        },
+        "narrativeOutcome": "He huffs something that might be a laugh. “Fair enough.” But it lands a little colder than you meant it to."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 103,
+    "day": "Day 4",
+    "text": "The road splits three ways out of the ruins. Behind you, HQ's alarms have finally gone quiet—but that won't last.",
+    "imageName": "day4_route_split",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Follow the old highway.",
+        "soundEffect": "",
+        "nextPromptId": 200,
+        "consequence": {
+          "timeDelta": 10
+        },
+        "setFlags": {
+          "travelRoute": {
+            "type": "string",
+            "value": "highway"
+          }
+        },
+        "narrativeOutcome": "Open ground, fast walking—but nowhere to hide if something's watching."
+      },
+      {
+        "text": "Follow the rail line.",
+        "soundEffect": "",
+        "nextPromptId": 200,
+        "consequence": {
+          "timeDelta": 15
+        },
+        "setFlags": {
+          "travelRoute": {
+            "type": "string",
+            "value": "rail"
+          }
+        },
+        "narrativeOutcome": "Slower going, but the embankments give you cover most of the way."
+      },
+      {
+        "text": "Follow the river.",
+        "soundEffect": "",
+        "nextPromptId": 200,
+        "consequence": {
+          "timeDelta": 20
+        },
+        "setFlags": {
+          "travelRoute": {
+            "type": "string",
+            "value": "river"
+          }
+        },
+        "narrativeOutcome": "The longest route by far—but water means resources, if you're careful."
+      }
+    ],
+    "backgroundEffect": {
+      "type": "none"
+    }
+  },
+  {
+    "id": 200,
+    "day": "Day 5",
+    "text": "[END OF CURRENT STORY CONTENT] Day 4 is complete—the route is chosen, and whatever it holds is still ahead. Day 5's route-specific hazard hasn't been written yet.",
     "imageName": "",
     "soundEffect": "",
     "choices": [
