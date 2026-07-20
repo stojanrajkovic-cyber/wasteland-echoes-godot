@@ -1,0 +1,6 @@
+# Godot 4+ editor/import cache - regenerated automatically, machine-specific.
+# Never commit this; it causes merge-conflict noise and bloats the repo.
+.godot/
+
+# macOS
+.DS_Store

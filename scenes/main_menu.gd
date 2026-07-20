@@ -63,9 +63,4 @@ func _on_credits_pressed() -> void:
 
 
 func _go_to_game_view() -> void:
-	if ResourceLoader.exists(GAME_VIEW_SCENE):
-		get_tree().change_scene_to_file(GAME_VIEW_SCENE)
-	else:
-		print("[MainMenu] Game View scene not built yet - here's proof the button logic worked:")
-		print("  GameManager.current_state -> ", GameManager.current_state)
-		print("  current prompt -> ", GameManager.current_prompt.get("text", ""))
+	get_tree().change_scene_to_file(GAME_VIEW_SCENE)
