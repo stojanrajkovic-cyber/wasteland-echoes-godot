@@ -138,6 +138,8 @@ func select_choice(choice: Dictionary) -> void:
 		next_id = int(outcome.get("nextPromptId", next_id))
 		if outcome.has("narrativeOutcome"):
 			last_narrative_outcome = outcome["narrativeOutcome"]
+		if outcome.has("consequence"):
+			_apply_change(outcome["consequence"])
 		if outcome.has("setFlags"):
 			_apply_set_flags(outcome["setFlags"])
 

@@ -1252,7 +1252,7 @@
       {
         "text": "Follow the old highway.",
         "soundEffect": "",
-        "nextPromptId": 200,
+        "nextPromptId": 210,
         "consequence": {
           "timeDelta": 10
         },
@@ -1267,7 +1267,7 @@
       {
         "text": "Follow the rail line.",
         "soundEffect": "",
-        "nextPromptId": 200,
+        "nextPromptId": 220,
         "consequence": {
           "timeDelta": 15
         },
@@ -1282,7 +1282,7 @@
       {
         "text": "Follow the river.",
         "soundEffect": "",
-        "nextPromptId": 200,
+        "nextPromptId": 230,
         "consequence": {
           "timeDelta": 20
         },
@@ -1300,21 +1300,125 @@
     }
   },
   {
-    "id": 200,
+    "id": 210,
     "day": "Day 5",
-    "text": "[END OF CURRENT STORY CONTENT] Day 4 is complete—the route is chosen, and whatever it holds is still ahead. Day 5's route-specific hazard hasn't been written yet.",
-    "imageName": "",
+    "text": "The highway stretches ahead, but the air feels wrong—skin prickling, old road signs scorched past reading. Somewhere close, background radiation is spiking, and the road splits around a collapsed overpass.",
+    "imageName": "day5_highway_radiation",
     "soundEffect": "",
     "choices": [
       {
-        "text": "Return to Main Menu",
-        "nextPromptId": -3000,
-        "narrativeOutcome": ""
+        "text": "Cut through the collapsed overpass supports—faster, but closer to the hot spot.",
+        "soundEffect": "",
+        "nextPromptId": 211,
+        "consequence": { "hpDelta": -10, "timeDelta": -5 },
+        "narrativeOutcome": "You move fast and low. Your dosimeter shrieks for a few seconds, then goes quiet again."
+      },
+      {
+        "text": "Skirt wide along the guardrail—slower, but safer.",
+        "soundEffect": "",
+        "nextPromptId": 211,
+        "consequence": { "hpDelta": -3, "timeDelta": 10 },
+        "narrativeOutcome": "The long way round costs you time you don't love losing, but the reading barely twitches."
+      },
+      {
+        "text": "Push straight through the middle of it.",
+        "soundEffect": "",
+        "nextPromptId": 211,
+        "consequence": { "hpDelta": -16 },
+        "narrativeOutcome": "Bad call. The reading spikes hard and stays there longer than you'd like."
       }
     ],
-    "backgroundEffect": {
-      "type": "none"
-    },
+    "backgroundEffect": { "type": "none" }
+  },
+  {
+    "id": 211,
+    "day": "Day 5",
+    "text": "You clear the worst of it, the dosimeter finally quieting. Ash-white residue clings to your boots. Whatever that place used to be, it isn't anymore.",
+    "imageName": "day5_highway_clear",
+    "soundEffect": "",
+    "choices": [
+      { "text": "Continue", "soundEffect": "", "nextPromptId": 300, "narrativeOutcome": "" }
+    ],
+    "backgroundEffect": { "type": "none" }
+  },
+  {
+    "id": 220,
+    "day": "Day 5",
+    "text": "The rail tunnel groans around you, dust sifting from the ceiling in a steady hiss. Something structural just shifted, somewhere ahead in the dark.",
+    "imageName": "day5_tunnel_groan",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Run for the far end.",
+        "soundEffect": "",
+        "nextPromptId": 221,
+        "consequence": { "staDelta": -8, "timeDelta": -5 },
+        "narrativeOutcome": "You sprint blind through the dark, boots skidding on loose gravel."
+      },
+      {
+        "text": "Freeze and press against the wall.",
+        "soundEffect": "",
+        "nextPromptId": 221,
+        "consequence": { "staDelta": -2, "timeDelta": 5 },
+        "narrativeOutcome": "You go still. Whatever's settling above you seems to settle back down."
+      }
+    ],
+    "backgroundEffect": { "type": "none" }
+  },
+  {
+    "id": 221,
+    "day": "Day 5",
+    "text": "A section of ceiling lets go behind you—close, loud, final. The way forward is clear, but the way back just isn't anymore.",
+    "imageName": "day5_tunnel_collapse",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Keep moving. No going back now anyway.",
+        "soundEffect": "",
+        "nextPromptId": 300,
+        "consequence": { "morDelta": -3 },
+        "narrativeOutcome": "You push on, trying not to think about how close that was."
+      }
+    ],
+    "backgroundEffect": { "type": "none" }
+  },
+  {
+    "id": 230,
+    "day": "Day 5",
+    "text": "The river's wider than it looked from the bank, current dragging hard at the debris caught along its edge. You'll need to get across one way or another.",
+    "imageName": "day5_river_crossing",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Find a way across.",
+        "soundEffect": "",
+        "branchOnFlag": {
+          "flag": "hasRope",
+          "value": true,
+          "ifTrue": {
+            "nextPromptId": 300,
+            "narrativeOutcome": "The rope earns its weight. You lash it to a fallen support and cross hand-over-hand, dry and steady."
+          },
+          "ifFalse": {
+            "nextPromptId": 300,
+            "consequence": { "hpDelta": -6, "staDelta": -10 },
+            "narrativeOutcome": "No rope, no choice. You go in and swim for it, current fighting you the whole way, colder and weaker on the far bank."
+          }
+        }
+      }
+    ],
+    "backgroundEffect": { "type": "none" }
+  },
+  {
+    "id": 300,
+    "day": "Day 6",
+    "text": "[END OF CURRENT STORY CONTENT] Day 5 is behind you, whichever way you crossed it. Day 6 hasn't been written yet.",
+    "imageName": "",
+    "soundEffect": "",
+    "choices": [
+      { "text": "Return to Main Menu", "nextPromptId": -3000, "narrativeOutcome": "" }
+    ],
+    "backgroundEffect": { "type": "none" },
     "isPlaceholder": true
   },
   {
