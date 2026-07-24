@@ -52,7 +52,7 @@ func _on_settings_pressed() -> void:
 	_play_tap()
 	GameManager.go_to_settings()
 	if ResourceLoader.exists(SETTINGS_SCENE):
-		get_tree().change_scene_to_file(SETTINGS_SCENE)
+		SceneTransition.change_scene(SETTINGS_SCENE)
 	else:
 		print("[MainMenu] Settings scene not built yet. GameManager.current_state -> ", GameManager.current_state)
 
@@ -63,4 +63,4 @@ func _on_credits_pressed() -> void:
 
 
 func _go_to_game_view() -> void:
-	get_tree().change_scene_to_file(GAME_VIEW_SCENE)
+	SceneTransition.change_scene(GAME_VIEW_SCENE)

@@ -82,4 +82,4 @@ func _on_start_pressed() -> void:
 	sfx_player.play()
 	# Tiny delay so the tap sound is audible before the scene switches.
 	await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+	SceneTransition.change_scene(MAIN_MENU_SCENE)

@@ -21,6 +21,7 @@ config/features=PackedStringArray("4.7", "Mobile")
 [autoload]
 
 GameManager="*res://autoload/game_manager.gd"
+SceneTransition="*res://autoload/scene_transition.tscn"
 
 [display]
 

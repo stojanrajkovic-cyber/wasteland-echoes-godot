@@ -62,7 +62,7 @@ func _on_prompt_changed(prompt: Dictionary) -> void:
 
 func _on_game_state_changed(new_state: int) -> void:
 	if new_state == GameManager.GameState.MAIN_MENU:
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		SceneTransition.change_scene("res://scenes/main_menu.tscn")
 
 
 func _update_background(image_name: String) -> void:
