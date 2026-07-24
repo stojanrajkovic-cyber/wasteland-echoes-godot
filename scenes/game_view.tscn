@@ -84,7 +84,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.35)
+color = Color(0, 0, 0, 0.12)
 
 [node name="MainVBox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -160,17 +160,6 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ToastPanel" type="PanelContainer" parent="MainVBox/BottomMargin/BottomVBox"]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("2")
-
-[node name="ToastLabel" type="Label" parent="MainVBox/BottomMargin/BottomVBox/ToastPanel"]
-layout_mode = 2
-autowrap_mode = 3
-theme_override_font_sizes/font_size = 22
-text = ""
-
 [node name="PromptPanel" type="PanelContainer" parent="MainVBox/BottomMargin/BottomVBox"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("1")
@@ -185,9 +174,49 @@ text = ""
 layout_mode = 2
 theme_override_constants/separation = 16
 
+[node name="OutcomeModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+
+[node name="Dim" type="ColorRect" parent="OutcomeModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.55)
+mouse_filter = 0
+
+[node name="PopupCenter" type="CenterContainer" parent="OutcomeModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="OutcomePanel" type="PanelContainer" parent="OutcomeModal/PopupCenter"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("2")
+
+[node name="OutcomeVBox" type="VBoxContainer" parent="OutcomeModal/PopupCenter/OutcomePanel"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="OutcomeLabel" type="Label" parent="OutcomeModal/PopupCenter/OutcomePanel/OutcomeVBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 26
+text = ""
+
+[node name="OutcomeButton" type="Button" parent="OutcomeModal/PopupCenter/OutcomePanel/OutcomeVBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 70)
+theme_override_styles/normal = SubResource("1")
+theme_override_font_sizes/font_size = 24
+text = "Continue"
+
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2")
-
-[node name="ToastTimer" type="Timer" parent="."]
-one_shot = true
-wait_time = 4.0

@@ -1,7 +1,7 @@
 extends Control
 ## Port of GameView.swift - the core gameplay screen. Renders the current
 ## prompt, dynamically builds choice buttons, shows stats, and displays a
-## brief toast for narrativeOutcome text.
+## modal popup (dismissed by tapping Continue) for narrativeOutcome text.
 ##
 ## Background images: looks for res://assets/backgrounds/{imageName}.jpg
 ## (or .png). If a prompt's imageName isn't found yet, falls back to a
@@ -9,19 +9,18 @@ extends Control
 ## separately.
 
 const BACKGROUND_DIR := "res://assets/backgrounds/"
-const TOAST_DURATION := 4.0
 
 @onready var background: TextureRect = $Background
 @onready var day_label: Label = $MainVBox/TopBarMargin/TopBar/DayLabel
 @onready var hp_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/HPBadge/HPLabel
 @onready var sta_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/StaBadge/StaLabel
 @onready var mor_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/MorBadge/MorLabel
-@onready var toast_panel: PanelContainer = $MainVBox/BottomMargin/BottomVBox/ToastPanel
-@onready var toast_label: Label = $MainVBox/BottomMargin/BottomVBox/ToastPanel/ToastLabel
+@onready var outcome_modal: Control = $OutcomeModal
+@onready var outcome_label: Label = $OutcomeModal/PopupCenter/OutcomePanel/OutcomeVBox/OutcomeLabel
+@onready var outcome_button: Button = $OutcomeModal/PopupCenter/OutcomePanel/OutcomeVBox/OutcomeButton
 @onready var prompt_label: Label = $MainVBox/BottomMargin/BottomVBox/PromptPanel/PromptLabel
 @onready var choices_container: VBoxContainer = $MainVBox/BottomMargin/BottomVBox/ChoicesContainer
 @onready var sfx_player: AudioStreamPlayer = $SfxPlayer
-@onready var toast_timer: Timer = $ToastTimer
 
 
 func _ready() -> void:
@@ -29,9 +28,9 @@ func _ready() -> void:
 	GameManager.stats_changed.connect(_on_stats_changed)
 	GameManager.narrative_outcome.connect(_on_narrative_outcome)
 	GameManager.game_state_changed.connect(_on_game_state_changed)
-	toast_timer.timeout.connect(func(): toast_panel.visible = false)
+	outcome_button.pressed.connect(_on_outcome_dismissed)
 
-	toast_panel.visible = false
+	outcome_modal.visible = false
 	_on_stats_changed()
 	_on_prompt_changed(GameManager.current_prompt)  # render whatever's already current
 
@@ -45,9 +44,13 @@ func _on_stats_changed() -> void:
 func _on_narrative_outcome(text: String) -> void:
 	if text == "":
 		return
-	toast_label.text = text
-	toast_panel.visible = true
-	toast_timer.start(TOAST_DURATION)
+	outcome_label.text = text
+	outcome_modal.visible = true
+
+
+func _on_outcome_dismissed() -> void:
+	sfx_player.play()
+	outcome_modal.visible = false
 
 
 func _on_prompt_changed(prompt: Dictionary) -> void:
