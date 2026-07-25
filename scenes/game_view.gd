@@ -32,7 +32,7 @@ func _ready() -> void:
 
 	outcome_modal.visible = false
 	_on_stats_changed()
-	_on_prompt_changed(GameManager.current_prompt)  # render whatever's already current
+	_render_prompt(GameManager.current_prompt)  # first paint - no flash, the scene-level fade already covers entry
 
 
 func _on_stats_changed() -> void:
@@ -54,6 +54,10 @@ func _on_outcome_dismissed() -> void:
 
 
 func _on_prompt_changed(prompt: Dictionary) -> void:
+	SceneTransition.flash_update(func(): _render_prompt(prompt))
+
+
+func _render_prompt(prompt: Dictionary) -> void:
 	day_label.text = prompt.get("day", "")
 	prompt_label.text = prompt.get("text", "")
 	_update_background(prompt.get("imageName", ""))

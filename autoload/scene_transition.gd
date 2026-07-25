@@ -31,3 +31,27 @@ func change_scene(path: String) -> void:
 
 	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_busy = false
+
+
+## Same fade-out/fade-in effect, but for updating content WITHIN the current
+## scene (e.g. prompt-to-prompt in Game View) instead of swapping scene files.
+## update_callback runs while the screen is fully black.
+func flash_update(update_callback: Callable) -> void:
+	if _busy:
+		return
+	_busy = true
+	fade_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+
+	var fade_out := create_tween()
+	fade_out.tween_property(fade_rect, "color:a", 1.0, FADE_TIME)
+	await fade_out.finished
+
+	update_callback.call()
+	await get_tree().process_frame
+
+	var fade_in := create_tween()
+	fade_in.tween_property(fade_rect, "color:a", 0.0, FADE_TIME)
+	await fade_in.finished
+
+	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_busy = false
