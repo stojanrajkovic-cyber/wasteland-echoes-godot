@@ -831,6 +831,7 @@
     "id": 23,
     "day": "Day 3",
     "text": "You emerge into a debris-strewn lobby—shattered tiles, overturned furniture, and a dusty reception desk.",
+    "imageName": "day3_prompt_lobby",
     "choices": [
       {
         "text": "Press on toward the office stairwell.",
@@ -1920,6 +1921,7 @@
     "id": 2323231,
     "day": "Day 3",
     "text": "The doors slam open and guards flood in. You’re trapped in the lobby as alarms blare.",
+    "imageName": "day3_prompt_lobby_trapped",
     "choices": [
       {
         "text": "Fight your way out.",
@@ -1947,6 +1949,7 @@
     "id": 2828281,
     "day": "Day 3",
     "text": "Alarms echo through the corridors—government drones flood the HQ. The building is locked down and you’re trapped inside.",
+    "imageName": "day3_prompt_lockdown",
     "choices": [
       {
         "text": "Accept Fate",
