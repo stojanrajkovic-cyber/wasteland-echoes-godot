@@ -726,7 +726,7 @@
   {
     "id": 19,
     "day": "Day 3",
-    "text": "You stand before the shattered perimeter of the old research district. Beyond the broken barricades looms the headquarters—your boss’s last stronghold and the only place you’ll find the Scutum Project USB.",
+    "text": "The research district's perimeter looks like something tried to eat it and gave up halfway through. Barricades lie broken and rusted, swallowed by weeds that don't seem to care what the world used to be. Beyond them, HQ still stands—battered, but standing, the closest thing left to a stronghold in a city that stopped defending anything a long time ago. Somewhere inside is the Key. Three years of your calculations mean nothing without it. You've come too far to let a wall stop you now.",
     "imageName": "day3_prompt_hq_perimeter",
     "soundEffect": "",
     "choices": [
@@ -764,7 +764,7 @@
   {
     "id": 20,
     "day": "Day 3",
-    "text": "A rusted iron gate bars your way, its lock fused by years of neglect and heat.",
+    "text": "An iron gate blocks the way forward, its lock fused solid by years of rust and heat-warping. It wasn't built to keep people out, originally—more likely the opposite, something meant to protect whoever was still inside when things fell apart. Now it's just one more obstacle between you and what you came for.",
     "imageName": "day3_prompt_locked_gate",
     "soundEffect": "",
     "choices": [
@@ -797,7 +797,7 @@
   {
     "id": 22,
     "day": "Day 3",
-    "text": "A lone guard blocks the corridor intersection, leaning on a makeshift spear.",
+    "text": "A single guard holds the intersection ahead, weight braced against a spear that looks more improvised than issued—sharpened rebar, by the look of it, wrapped in cloth for a grip. He hasn't seen you yet, or he's pretending not to. Either way, you have seconds to decide how this goes.",
     "imageName": "day3_prompt_guard_post",
     "soundEffect": "",
     "choices": [
@@ -830,7 +830,7 @@
   {
     "id": 23,
     "day": "Day 3",
-    "text": "You emerge into a debris-strewn lobby—shattered tiles, overturned furniture, and a dusty reception desk.",
+    "text": "The corridor opens into what used to be a lobby, back when this building had people in it who came to work rather than people trying to survive the day. Shattered tiles crunch underfoot. Furniture lies overturned, exactly where it fell however many years ago. A reception desk sits buried under dust so thick it's become its own kind of architecture. Whatever's left of the shift schedule that used to run this place, you're about to find out if you beat it or not.",
     "imageName": "day3_prompt_lobby",
     "choices": [
       {
@@ -838,7 +838,7 @@
         "nextPromptId": 24,
         "requiredIntFlags": {
           "elapsedTime": {
-            "max": 40
+            "max": 49
           }
         },
         "consequence": {
@@ -867,7 +867,7 @@
   {
     "id": 24,
     "day": "Day 3",
-    "text": "The staircase spirals upward; many steps are broken or slick with dust.",
+    "text": "The staircase spirals up into darker floors above, and more than a few of its steps look like they'd rather not hold your weight—cracked concrete, some missing outright, all of it slick with a fine grey dust that makes every footing a small negotiation. Rushing feels tempting. Rushing also feels like exactly how people end up at the bottom of stairwells like this one.",
     "imageName": "day3_prompt_stairwell",
     "soundEffect": "",
     "choices": [
@@ -900,7 +900,7 @@
   {
     "id": 25,
     "day": "Day 3",
-    "text": "A solid wood door stands before you, secured by a heavy padlock and keypad.",
+    "text": "A heavy wooden door blocks the way, secured by both an old padlock and a keypad that's somehow still faintly lit—one of the last working circuits in a building that's mostly given up on electricity. Someone thought whatever's behind this door was worth protecting even after everything else stopped mattering. That's either a very good sign or a very bad one.",
     "imageName": "day3_prompt_office_door",
     "soundEffect": "",
     "choices": [
@@ -932,7 +932,7 @@
   {
     "id": 26,
     "day": "Day 3",
-    "text": "Behind the desk sits a steel safe—your boss’s digital lock must guard the only copy of the Scutum Project software.",
+    "text": "A steel safe sits behind the ransacked desk, its digital lock somehow still holding after everything else in this building has failed. Whatever's inside, your old boss cared enough to protect it even as the world ended around him. You still remember the combination, or you think you do—three years is a long time to trust your own memory.",
     "imageName": "day3_prompt_safe",
     "soundEffect": "",
     "choices": [
@@ -944,7 +944,7 @@
           "morDelta": 3,
           "timeDelta": 2
         },
-        "narrativeOutcome": "The safe clicks open. Inside lies a rugged USB stick stamped “Scutum Project.”",
+        "narrativeOutcome": "The safe clicks open. Inside lies the Key—smaller than you remembered, stamped with the Scutum Project seal, and impossibly still exactly where it was supposed to be.",
         "setFlags": {
           "gotUSB": {
             "type": "bool",
@@ -971,7 +971,7 @@
   {
     "id": 27,
     "day": "Day 3",
-    "text": "You cradle the Key in your palm—a small, sealed override token, cold and impossibly solid against everything else that's fallen apart today.",
+    "text": "You cradle the Key in your palm like it might dissolve if you hold it wrong. Small. Sealed. Impossibly solid against everything else that's fallen apart today—the city, the plan, your own certainty about what any of this is actually for. Three years of work led here, to this specific object sitting cool and unremarkable in your hand. It doesn't look like it's worth dying for. You've come too far to decide it isn't.",
     "imageName": "day3_prompt_usb_in_hand",
     "soundEffect": "",
     "choices": [
@@ -1003,7 +1003,7 @@
   {
     "id": 28,
     "day": "Day 3",
-    "text": "Key secured, you must choose your path back through the labyrinthine halls.",
+    "text": "The Key is secured. Getting out is a different problem entirely—the halls between here and the exit are a maze you only half-remember from the way in, and somewhere in this building, guards are still doing their rounds, unaware yet of exactly how much has changed.",
     "imageName": "day3_prompt_escape_route",
     "soundEffect": "",
     "choices": [
@@ -1049,7 +1049,7 @@
   {
     "id": 29,
     "day": "Day 3",
-    "text": "You burst through the HQ’s side exit just as the roof rumbles and alarms wail. Seconds later, a shockwave shatters the doors behind you in a plume of dust and debris. You sprint toward the highway. Your path to Haven lies ahead.",
+    "text": "You hit the side exit at a dead run just as the roof gives a warning rumble and alarms finally catch up to what's already happened. Seconds later the doors behind you disintegrate in a shockwave of dust and debris, close enough to feel on the back of your neck. You don't look back to see how close. You just run, lungs burning, the Key a hard weight against your ribs, HQ's alarms fading behind you into the general noise of a city that's always screaming about something. Ahead: the highway, the open road, and somewhere past the horizon, if you let yourself believe it—Haven.",
     "imageName": "day3_prompt_hq_escape_success",
     "soundEffect": "",
     "choices": [
@@ -1785,7 +1785,7 @@
   {
     "id": 2020201,
     "day": "Day 3",
-    "text": "The gate’s roar echoes down the compound—footsteps thunder behind you.",
+    "text": "The gate gives way with a roar that echoes down the whole compound, announcing you to anyone listening. And someone is listening—boots hammering the ground behind you almost immediately, closing fast. Whatever quiet approach you'd hoped for just became a very loud problem.",
     "imageName": "day3_prompt_alarm",
     "soundEffect": "alarm",
     "choices": [
@@ -1818,7 +1818,7 @@
   {
     "id": 2020202,
     "day": "Day 3",
-    "text": "The service door yawns open into a dark corridor littered with broken cables.",
+    "text": "The service door swings open onto a corridor gone dark and silent, floor littered with cables torn loose from whatever they used to power. It smells like old dust and older electricity, the particular stillness of a space nobody's walked through in a long time. Or so you hope.",
     "imageName": "day3_prompt_service_corridor",
     "soundEffect": "",
     "choices": [
@@ -1850,7 +1850,7 @@
   {
     "id": 2222221,
     "day": "Day 3",
-    "text": "The guard pockets your ration but then nods toward a hidden door to the side. \"This way, but don't slow down,\" he warns.",
+    "text": "The guard's fingers close around the ration fast, like he's afraid you'll change your mind. He jerks his head toward a hidden door set into the side wall, easy to miss unless you knew to look for it. “This way,” he mutters, already moving. “But don't slow down.” Whatever loyalty a ration buys out here, it clearly doesn't buy much patience.",
     "imageName": "day3_prompt_guard_shortcut",
     "soundEffect": "",
     "choices": [
@@ -1888,7 +1888,7 @@
   {
     "id": 2222222,
     "day": "Day 3",
-    "text": "You press against the wall and slip past the guard’s blind side. Your heart pounds as you steal into the shadowed hall.",
+    "text": "You flatten yourself against the wall and edge past on his blind side, every muscle coiled, certain he's about to turn at any second. He doesn't. You slip into the shadowed hall beyond with your heart slamming against your ribs, the particular relief of having gotten away with something you weren't sure you'd get away with.",
     "imageName": "day3_prompt_guard_sneak",
     "soundEffect": "",
     "choices": [
@@ -1920,7 +1920,7 @@
   {
     "id": 2323231,
     "day": "Day 3",
-    "text": "The doors slam open and guards flood in. You’re trapped in the lobby as alarms blare.",
+    "text": "The doors slam open before you've found anywhere to go. Guards flood in fast, boots on broken tile, alarms shrieking somewhere overhead loud enough to make thinking difficult. There's no clean way out of this lobby anymore—only a decision about how badly this is about to go.",
     "imageName": "day3_prompt_lobby_trapped",
     "choices": [
       {
@@ -1948,7 +1948,7 @@
   {
     "id": 2828281,
     "day": "Day 3",
-    "text": "Alarms echo through the corridors—government drones flood the HQ. The building is locked down and you’re trapped inside.",
+    "text": "The alarms don't stop this time. Somewhere above, mechanical whirring announces drones pouring into the compound, methodical, unhurried, built for exactly this. Steel shutters grind down over every exit you can see, sealing the building with a finality that leaves no room for negotiation. You ran out of time, and time, it turns out, was the only thing this place was ever going to give you back. The blueprints stay rolled against your spine, the Key stays cold in your pocket, and neither of them means anything now, sealed inside a building that was never going to let you leave twice.",
     "imageName": "day3_prompt_lockdown",
     "choices": [
       {
