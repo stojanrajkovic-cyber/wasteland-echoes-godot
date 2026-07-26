@@ -146,6 +146,13 @@ func _make_button_style() -> StyleBoxFlat:
 # scrollbar, etc.) already consumed - so this naturally only triggers on
 # empty background area, with zero need to manage mouse_filter by hand.
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		print("[RAW _input] mouse button, pressed=", event.pressed)
+	elif event is InputEventScreenTouch:
+		print("[RAW _input] screen touch, pressed=", event.pressed)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	var is_press_event := false
 	var pressed := false
