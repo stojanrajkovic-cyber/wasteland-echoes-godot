@@ -159,19 +159,25 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not is_press_event:
 		return
 
+	print("[LongPress] unhandled_input reached - pressed=", pressed)
+
 	if pressed:
 		long_press_timer.start()
+		print("[LongPress] timer started")
 	else:
 		long_press_timer.stop()
+		print("[LongPress] released, reveal_active was ", _reveal_active)
 		if _reveal_active:
 			_set_reveal(false)
 
 
 func _on_long_press_timeout() -> void:
+	print("[LongPress] TIMER FIRED - activating reveal")
 	_set_reveal(true)
 
 
 func _set_reveal(active: bool) -> void:
+	print("[LongPress] _set_reveal(", active, ") called")
 	_reveal_active = active
 	var tween := create_tween()
 	tween.tween_property(main_vbox, "modulate:a", 0.0 if active else 1.0, REVEAL_FADE_TIME)
