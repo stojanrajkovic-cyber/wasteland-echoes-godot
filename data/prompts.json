@@ -2,7 +2,7 @@
   {
     "id": 1,
     "day": "Day 1",
-    "text": "The emergency lights died an hour ago. Now the lab breathes in the pale blue afterglow of failing backup batteries, and every shadow looks like it's waiting for you. You move quickly and quietly\u2014old habits from security drills nobody ever thought you'd actually need. Two bottles of water. Two sandwiches, already stale. A flashlight, a lighter, a length of rope you grabbed without quite knowing why. No medkit\u2014those went to people who needed them more, weeks ago, and never came back. No weapon, either. You were supposed to save the world with equations, not your hands.\n\nThe Scutum blueprints are rolled tight against your spine, wrapped in a torn garbage bag against the ash that gets into everything now. Three years of your life folded into a few hundred pages. Maybe humanity's last real chance, if even half of what you calculated holds true. You still believe that. You have to. But the blueprints alone are worthless without the Key, and the Key is locked inside HQ, on the far edge of a city that stopped being safe long before the Fracture finished the job.\n\nYou take one last look at the only home you've had since everything fell apart, and you don't let yourself wonder whether you'll ever stand in it again. \n\nThe emergency lights died an hour ago. Now the lab breathes in the pale blue afterglow of failing backup batteries, and every shadow looks like it's waiting for you. You move quickly and quietly\u2014old habits from security drills nobody ever thought you'd actually need. Two bottles of water. Two sandwiches, already stale. A flashlight, a lighter, a length of rope you grabbed without quite knowing why. No medkit\u2014those went to people who needed them more, weeks ago, and never came back. No weapon, either. You were supposed to save the world with equations, not your hands.\n\nThe Scutum blueprints are rolled tight against your spine, wrapped in a torn garbage bag against the ash that gets into everything now. Three years of your life folded into a few hundred pages. Maybe humanity's last real chance, if even half of what you calculated holds true. You still believe that. You have to. But the blueprints alone are worthless without the Key, and the Key is locked inside HQ, on the far edge of a city that stopped being safe long before the Fracture finished the job.\n\nYou take one last look at the only home you've had since everything fell apart, and you don't let yourself wonder whether you'll ever stand in it again.",
+    "text": "The emergency lights died an hour ago. Now the lab breathes in the pale blue afterglow of failing backup batteries, and every shadow looks like it's waiting for you. You move quickly and quietly\u2014old habits from security drills nobody ever thought you'd actually need. Two bottles of water. Two sandwiches, already stale. A flashlight, a lighter, a length of rope you grabbed without quite knowing why. No medkit\u2014those went to people who needed them more, weeks ago, and never came back. No weapon, either. You were supposed to save the world with equations, not your hands.\n\nThe Scutum blueprints are rolled tight against your spine, wrapped in a torn garbage bag against the ash that gets into everything now. Three years of your life folded into a few hundred pages. Maybe humanity's last real chance, if even half of what you calculated holds true. You still believe that. You have to. But the blueprints alone are worthless without the Key, and the Key is locked inside HQ, on the far edge of a city that stopped being safe long before the Fracture finished the job.\n\nYou take one last look at the only home you've had since everything fell apart, and you don't let yourself wonder whether you'll ever stand in it again.",
     "imageName": "day1_lab_background",
     "soundEffect": "",
     "choices": [
@@ -42,7 +42,7 @@
   {
     "id": 2,
     "day": "Day 1",
-    "text": "A charged Li-ion battery sits on the shelf—a rare find, useful for trading or emergencies. But there’s only enough room to keep it if you leave behind either a bottle of water or a sandwich. You slowly exit the laboratory.",
+    "text": "The battery is still humming faintly when you find it—a small miracle, fully charged, sitting on a shelf like it's been waiting for you specifically. Li-ion, rare, the kind of thing that could buy safe passage from someone desperate enough to want it, or power something that actually matters when the time comes. You do the math without meaning to: it's heavy, your pack is already full, and the only room left is where a bottle of water or a sandwich used to be. Somewhere out there, your body will remember this decision long after you've forgotten making it. You linger at the lab's threshold a moment longer than you should, then step out into a corridor gone unfamiliar with dust.",
     "imageName": "day1_battery_background",
     "soundEffect": "prompt1_light-flicker_low",
     "choices": [
@@ -98,7 +98,7 @@
   {
     "id": 3,
     "day": "Day 1",
-    "text": "Just outside you find a battered pharmacy with supplies inside. It is locked. The lock is tough. You could try to pick it quietly but someone could see you, or just smash it open but risk being heard.",
+    "text": "The pharmacy sign has lost half its letters, but the shape of the word is still there if you squint—PHARMACY, or what's left of it, hanging crooked over a door someone thought to chain shut before the world ended. Smart of them. Frustrating for you. The chain is rusted but solid, looped through a padlock that's seen better decades. Somewhere behind that door is exactly what your body has been quietly begging for since you left the lab—bandages, maybe something for the headache building behind your eyes. You could work the lock slow and careful, praying nobody's watching. Or you could just end it—one hard strike, and deal with whoever comes running.",
     "imageName": "day1_pharmacy_background",
     "soundEffect": "",
     "choices": [
@@ -135,7 +135,7 @@
   {
     "id": 4,
     "day": "Day 1",
-    "text": "You made it! Inside the pharmacy, you find a few bandages and expired painkillers. You eat a sandwich and drink some water to steady your nerves, then slip away before anyone notices.",
+    "text": "Dust hangs thick in the air inside, backlit by a shaft of grey daylight through a cracked skylight. The shelves have mostly been picked clean by people who got here first, but you find a handful of bandages tucked behind a fallen display, and a bottle of painkillers three years past their expiration date—close enough, you decide, when the alternative is nothing at all. You allow yourself a moment. Just one. You sit against the counter, eat, drink, let your hands stop shaking. It's the closest thing to peace you've felt since the lights went out. Then you're moving again, because peace is not a thing you get to keep.",
     "imageName": "day1_pharmacy_inside",
     "choices": [
       {
@@ -174,7 +174,7 @@
   {
     "id": 5,
     "day": "Day 1",
-    "text": "You did it. You're afraid that someone heard the noise. Just when you entered the pharmacy, scavengers burst in, drawn by the noise. They demand your supplies. You may be able to bargain if you have something valuable.",
+    "text": "The noise brought them, exactly like you feared it would. Three of them, maybe four, filling the doorway before you've even had time to feel good about what you found. Their eyes go straight to your pack, and you understand immediately that this isn't a negotiation so much as a formality before the taking. One of them has a length of pipe held loose at his side, not quite threatening yet, but close. Your mind races through what you're carrying and what you can afford to lose, and how much of it is actually a choice.",
     "imageName": "day1_scavengers",
     "choices": [
       {
@@ -245,7 +245,7 @@
   {
     "id": 6,
     "day": "Day 1",
-    "text": "You move on, leaving the pharmacy and its dangers behind. Hunger gnaws at you, but you're safe for now.",
+    "text": "You put the pharmacy behind you and don't look back—looking back never changed anything, in your experience, except how fast your heart beats. The street ahead is empty, or empty enough. Hunger sits low and constant in your stomach, an old companion by now. You're alive. For the moment, that has to be enough.",
     "imageName": "day1_street",
     "choices": [
       {
@@ -265,7 +265,7 @@
   {
     "id": 7,
     "day": "Day 1",
-    "text": "Night falls on the ruined city. You find a shadowy alley to rest. You make a small fire. It feels good. You hear distant voices, barking dogs, sometimes screams. You found some boxes to hide and sleep.",
+    "text": "Night comes down over the city like something falling, not something arriving. You find an alley narrow enough that nobody could approach without you hearing, and you risk a small fire—just enough to keep the worst of the cold at bay, cupped low behind a wall of broken crates so the light won't carry. It feels obscenely good, the warmth, more than it should. Somewhere out in the dark, voices rise and fall. A dog barks, then another. Once, briefly, something that might have been a scream. You build a nest of cardboard and stolen blankets and tell yourself you'll only close your eyes for a minute.",
     "imageName": "day1_night",
     "choices": [
       {
@@ -287,7 +287,7 @@
   {
     "id": 8,
     "day": "Day 1",
-    "text": "The scavengers ransack your pack, shouting and pushing. You’re left battered, clutching a single bottle of water. Everything else is gone.",
+    "text": "They don't ask twice. Hands are on your pack before you can react, shouting overlapping shouting, a shove that puts you on the ground hard enough to see stars. By the time they're gone, so is nearly everything you were carrying—the food, the medicine, the small comforts you'd allowed yourself to hope for. You're left sitting in the dirt with one bottle of water and the slowly dawning understanding of how much more dangerous this world just became.",
     "imageName": "day1_scavengers_fail_outcome",
     "choices": [
       {
@@ -1425,7 +1425,7 @@
   {
     "id": 44441,
     "day": "Day 1",
-    "text": "As you leave the pharmacy in hurry with every last scrap, you feel a sting of guilt. But your mind quickly turns to survival. You notice the Sun starts to burn with more power. Suddenly, you’re hit with a feeling of weakness. You feel dizzy. Your body protests the day’s stress. Before you can steady yourself, everything fades to black. Sometimes, even the best preparations are not enough in the wasteland…",
+    "text": "Guilt follows you out of the pharmacy, brief and sharp, gone almost as fast as it came—there's no room left in you for anything but the next step, and the one after that. The sun climbs higher, harder, a physical weight pressing down through what's left of the atmosphere. Your legs go first, a strange watery weakness that has nothing to do with willpower. Then the world tilts. You reach for something to steady yourself and find only air. The last thing you register, before the dark takes you, is how quiet it's gotten—how the whole ruined city seems to be holding its breath along with you. Even careful men run out of margin, out here. Today, it seems, was yours.",
     "imageName": "day1_dizzyness",
     "soundEffect": "day1_heartbeat_fadeout",
     "choices": [
@@ -1446,7 +1446,7 @@
   {
     "id": 44442,
     "day": "Day 1",
-    "text": "With some supplies in your pack and a touch of relief in your chest, you step back onto the cracked street. Suddenly, the silence shatters—a desperate figure lunges from behind a burned-out car. The world blurs as you’re knocked to the ground, pain flashing through your body. In the chaos, your grip on survival feels more fragile than ever.",
+    "text": "For one unguarded moment, relief gets the better of you—supplies in your pack, a little steadiness returning to your legs, the street ahead looking almost survivable. That's when the silence breaks. A shape detaches itself from behind a burned-out car, faster than a starving person has any right to move, and the impact takes you off your feet before your mind finishes processing what's happening. Pain arrives in flashes, disconnected: an elbow, the pavement, someone's breath too close to your ear. Whatever certainty you walked out of the lab with, it isn't here anymore.",
     "imageName": "day1_attack_after_pharmacy",
     "soundEffect": "",
     "choices": [
@@ -1523,7 +1523,7 @@
   {
     "id": 44443,
     "day": "Day 1",
-    "text": "You hear angry voices at the pharmacy door. Gripping your scavenged supplies, you bolt for the back, vaulting over a crumbling counter and crashing through a splintered window. As you slip out the pharmacy's back window, angry voices ring out behind you. You jump over shattered crates. Suddenly, your foot catches on twisted metal and you crash hard, pain exploding in your leg. Gritting your teeth, you limp away from the pharmacy, blood soaking your pants. Later, hidden in a ruined stairwell, you fumble with trembling hands to bandage the wound and swallow a few precious antibiotics, both taken from the pharmacy's shelves. The bleeding slows, but the pain lingers and exhaustion weighs heavy.",
+    "text": "You hear angry voices at the pharmacy door before you've even caught your breath. Gripping what you managed to grab, you bolt for the back, vaulting a crumbling counter and crashing through a splintered window into the alley beyond. Shattered crates litter your path; your foot catches on twisted metal and you go down hard, pain exploding white through your leg. You force yourself back up, teeth gritted, and limp away with blood soaking through your pants, the pharmacy's angry voices fading slowly behind you. Later, hidden in a ruined stairwell, you bandage the wound with trembling hands and swallow a few of the antibiotics you risked everything for. The bleeding slows. The pain does not. Exhaustion settles over you like a second skin.",
     "imageName": "day1_stairwell_triage",
     "choices": [
       {
@@ -1542,7 +1542,7 @@
   {
     "id": 55551,
     "day": "Day 1",
-    "text": "You burst out the back door of the pharmacy, lungs burning as you sprint into the maze of alleys. The angry shouts of scavengers echo behind you, but you don’t dare look back. Your foot catches on broken pavement; you stumble, scrambling up with scraped hands. You’ve lost some supplies in the chaos—maybe more than you realize. The city feels even colder and emptier as dusk creeps in.",
+    "text": "The back door gives way under your shoulder and then you're running, lungs already burning, feet finding a rhythm your mind isn't consciously choosing. Shouts chase you through the alley maze, closer at some turns, farther at others—you can't tell anymore, and you're not about to stop and check. Your foot catches on a heaved slab of pavement and the ground comes up fast, scraping both palms raw. You're up again before the pain fully registers. Somewhere in the last two minutes you lost things—how much, you won't know until you stop, and stopping doesn't feel like an option yet. The city around you seems to grow colder with every step, dusk settling in like it's got nowhere else to be.",
     "imageName": "day1_alley_escape",
     "choices": [
       {
@@ -1615,7 +1615,7 @@
   {
     "id": 66661,
     "day": "Day 1",
-    "text": "As the sun begins its descent, you trudge along empty streets, keeping your head low. Without supplies from the pharmacy, every ache and thirst feels sharper. The world seems to grow quieter and colder with each step. Shadows stretch along broken sidewalks, and a chill wind rattles loose glass in the windows overhead. \nNear an abandoned playground, you spot movement — a stray dog rummaging in a toppled trash can. The animal is thin, with patches of fur missing, but it hasn’t noticed you yet. Hunger tugs at your insides. The day’s choices settle heavy on your shoulders. Dusk is coming fast.",
+    "text": "The sun sinks lower, throwing long orange light across streets that haven't seen traffic in years. You walk with your head down, out of habit more than caution at this point—without what the pharmacy might have given you, every ache in your body feels sharper, every swallow drier than the last. The city seems to quiet around you as the light fails, shadows stretching thin and long across cracked sidewalks. Somewhere above, loose glass rattles in a window frame, stirred by a wind that carries the first real chill of evening. Near a rusted playground, something moves—a dog, ribs visible beneath patchy fur, nosing through a fallen trash can like it's forgotten what real food tastes like too. It hasn't noticed you. Your stomach twists at the sight of it, less from hunger than something closer to recognition. Everything out here is just trying to survive the day. Dusk is coming fast, and you still need somewhere to be when it arrives.",
     "imageName": "day1_empty_street_playground",
     "choices": [
       {
