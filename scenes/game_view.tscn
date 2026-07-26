@@ -167,8 +167,31 @@ layout_mode = 2
 custom_minimum_size = Vector2(130, 78)
 theme_override_styles/normal = SubResource("1")
 theme_override_font_sizes/font_size = 22
-icon = ExtResource("3")
-expand_icon = true
+text = ""
+
+[node name="BagContent" type="HBoxContainer" parent="MainVBox/TopBarMargin/TopBar/BagButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="BagIcon" type="TextureRect" parent="MainVBox/TopBarMargin/TopBar/BagButton/BagContent"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BagLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/BagButton/BagContent"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/font_size = 22
 text = "BAG"
 
 [node name="StatsBox" type="HBoxContainer" parent="MainVBox/TopBarMargin/TopBar"]
@@ -319,7 +342,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="InventoryPanel" type="PanelContainer" parent="InventoryModal/PopupCenter"]
-custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("2")
 
