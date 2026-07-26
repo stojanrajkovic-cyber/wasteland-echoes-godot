@@ -1,7 +1,19 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="Script" path="res://scenes/game_view.gd" id="1"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/button_tap.wav" id="2"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_backpack.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_water.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_food.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_medkit.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_battery.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_weapon.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_map.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_rope.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_lighter.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_flashlight.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_knife.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/icon_scrap.png" id="14"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0, 0, 0.55)
@@ -57,6 +69,38 @@ content_margin_left = 18.0
 content_margin_top = 10.0
 content_margin_right = 18.0
 content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0.55, 0.3, 0.08, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.95, 0.65, 0.25, 0.9)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_left = 14
+corner_radius_bottom_right = 14
+content_margin_left = 12.0
+content_margin_top = 14.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="7"]
+bg_color = Color(0.06, 0.06, 0.06, 0.55)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.3, 0.3, 0.5)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_left = 14
+corner_radius_bottom_right = 14
+content_margin_left = 12.0
+content_margin_top = 14.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
 
 [node name="GameView" type="Control"]
 anchors_preset = 15
@@ -120,9 +164,11 @@ size_flags_horizontal = 3
 
 [node name="BagButton" type="Button" parent="MainVBox/TopBarMargin/TopBar"]
 layout_mode = 2
-custom_minimum_size = Vector2(90, 60)
+custom_minimum_size = Vector2(130, 78)
 theme_override_styles/normal = SubResource("1")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
+icon = ExtResource("3")
+expand_icon = true
 text = "BAG"
 
 [node name="StatsBox" type="HBoxContainer" parent="MainVBox/TopBarMargin/TopBar"]
@@ -273,32 +319,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="InventoryPanel" type="PanelContainer" parent="InventoryModal/PopupCenter"]
-custom_minimum_size = Vector2(650, 0)
+custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("2")
 
 [node name="InventoryVBox" type="VBoxContainer" parent="InventoryModal/PopupCenter/InventoryPanel"]
 layout_mode = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 24
 
 [node name="TitleLabel" type="Label" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 text = "Inventory"
 
-[node name="ItemsContainer" type="VBoxContainer" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
+[node name="ItemsGrid" type="GridContainer" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
 
-[node name="ScrapLabel" type="Label" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
+[node name="ScrapRow" type="HBoxContainer" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+alignment = 1
+theme_override_constants/separation = 14
+
+[node name="ScrapIcon" type="TextureRect" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ScrapRow"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("14")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScrapLabel" type="Label" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ScrapRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
 text = "Scrap: 0"
 
 [node name="CloseButton" type="Button" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 74)
 theme_override_styles/normal = SubResource("1")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "Close"

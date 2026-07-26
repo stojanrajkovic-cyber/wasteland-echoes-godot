@@ -35,21 +35,21 @@ const REVEAL_FADE_TIME := 0.12
 @onready var long_press_timer: Timer = $LongPressTimer
 @onready var bag_button: Button = $MainVBox/TopBarMargin/TopBar/BagButton
 @onready var inventory_modal: Control = $InventoryModal
-@onready var inventory_items: VBoxContainer = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ItemsContainer
-@onready var scrap_label: Label = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ScrapLabel
+@onready var items_grid: GridContainer = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ItemsGrid
+@onready var scrap_label: Label = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ScrapRow/ScrapLabel
 @onready var inventory_close_button: Button = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/CloseButton
 
 const INVENTORY_ITEMS := [
-	{"key": "hasFood", "label": "Food", "type": "int"},
-	{"key": "hasWater", "label": "Water", "type": "int"},
-	{"key": "hasMedkit", "label": "Medkit", "type": "bool"},
-	{"key": "hasBattery", "label": "Battery", "type": "bool"},
-	{"key": "hasWeapon", "label": "Weapon", "type": "bool"},
-	{"key": "hasMap", "label": "Map", "type": "bool"},
-	{"key": "hasRope", "label": "Rope", "type": "bool"},
-	{"key": "hasLighter", "label": "Lighter", "type": "bool"},
-	{"key": "hasFlashlight", "label": "Flashlight", "type": "bool"},
-	{"key": "hasKnife", "label": "Knife", "type": "bool"},
+	{"key": "hasFood", "label": "Food", "type": "int", "icon": "icon_food.png"},
+	{"key": "hasWater", "label": "Water", "type": "int", "icon": "icon_water.png"},
+	{"key": "hasMedkit", "label": "Medkit", "type": "bool", "icon": "icon_medkit.png"},
+	{"key": "hasBattery", "label": "Battery", "type": "bool", "icon": "icon_battery.png"},
+	{"key": "hasWeapon", "label": "Weapon", "type": "bool", "icon": "icon_weapon.png"},
+	{"key": "hasMap", "label": "Map", "type": "bool", "icon": "icon_map.png"},
+	{"key": "hasRope", "label": "Rope", "type": "bool", "icon": "icon_rope.png"},
+	{"key": "hasLighter", "label": "Lighter", "type": "bool", "icon": "icon_lighter.png"},
+	{"key": "hasFlashlight", "label": "Flashlight", "type": "bool", "icon": "icon_flashlight.png"},
+	{"key": "hasKnife", "label": "Knife", "type": "bool", "icon": "icon_knife.png"},
 ]
 
 var _reveal_active := false
@@ -101,20 +101,65 @@ func _on_inventory_close_pressed() -> void:
 
 
 func _rebuild_inventory() -> void:
-	for child in inventory_items.get_children():
+	for child in items_grid.get_children():
 		child.queue_free()
 
 	for item in INVENTORY_ITEMS:
-		var row := Label.new()
-		row.add_theme_font_size_override("font_size", 24)
+		var owned: bool
+		var count_text := ""
 		if item["type"] == "int":
 			var count := int(GameManager.flags.get(item["key"], 0))
-			row.text = "%s: %d" % [item["label"], count]
+			owned = count > 0
+			count_text = str(count)
 		else:
-			var has_it: bool = GameManager.flags.get(item["key"], false) == true
-			row.text = item["label"]
-			row.modulate.a = 1.0 if has_it else 0.35
-		inventory_items.add_child(row)
+			owned = GameManager.flags.get(item["key"], false) == true
+
+		var cell := PanelContainer.new()
+		var style := StyleBoxFlat.new()
+		if owned:
+			style.bg_color = Color(0.55, 0.3, 0.08, 0.6)
+			style.border_color = Color(0.95, 0.65, 0.25, 0.9)
+		else:
+			style.bg_color = Color(0.06, 0.06, 0.06, 0.55)
+			style.border_color = Color(0.3, 0.3, 0.3, 0.5)
+		style.border_width_left = 2
+		style.border_width_top = 2
+		style.border_width_right = 2
+		style.border_width_bottom = 2
+		style.corner_radius_top_left = 14
+		style.corner_radius_top_right = 14
+		style.corner_radius_bottom_left = 14
+		style.corner_radius_bottom_right = 14
+		style.content_margin_left = 12
+		style.content_margin_top = 14
+		style.content_margin_right = 12
+		style.content_margin_bottom = 12
+		cell.add_theme_stylebox_override("panel", style)
+		cell.custom_minimum_size = Vector2(220, 160)
+
+		var cell_vbox := VBoxContainer.new()
+		cell_vbox.add_theme_constant_override("separation", 8)
+		cell_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+
+		var icon_center := CenterContainer.new()
+		var icon_rect := TextureRect.new()
+		icon_rect.texture = load("res://assets/ui/icons/" + item["icon"])
+		icon_rect.custom_minimum_size = Vector2(64, 64)
+		icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon_rect.modulate = Color(1, 1, 1, 1) if owned else Color(1, 1, 1, 0.3)
+		icon_center.add_child(icon_rect)
+		cell_vbox.add_child(icon_center)
+
+		var label := Label.new()
+		label.text = item["label"] if item["type"] == "bool" else "%s: %s" % [item["label"], count_text]
+		label.add_theme_font_size_override("font_size", 20)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.modulate.a = 1.0 if owned else 0.45
+		cell_vbox.add_child(label)
+
+		cell.add_child(cell_vbox)
+		items_grid.add_child(cell)
 
 	var scrap := int(GameManager.flags.get("scrap", 0))
 	scrap_label.text = "Scrap: %d" % scrap
