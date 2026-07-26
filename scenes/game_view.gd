@@ -141,13 +141,11 @@ func _make_button_style() -> StyleBoxFlat:
 
 
 # ---------------------------------------------------- Long-press reveal --
-# Background/DarkOverlay have mouse_filter = IGNORE (set in the .tscn), so
-# presses on empty background area (not over a button) fall through to
-# this root Control's _gui_input. Presses on buttons are consumed by the
-# buttons themselves first and never reach here, so normal taps are
-# unaffected.
+# _unhandled_input fires for any press/release that no Control (button,
+# scrollbar, etc.) already consumed - so this naturally only triggers on
+# empty background area, with zero need to manage mouse_filter by hand.
 
-func _gui_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	var is_press_event := false
 	var pressed := false
 
