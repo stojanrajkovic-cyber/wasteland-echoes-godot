@@ -38,6 +38,7 @@ var _reveal_active := false
 
 
 func _ready() -> void:
+	print("[GameView] _ready() called - script is attached and running")
 	GameManager.prompt_changed.connect(_on_prompt_changed)
 	GameManager.stats_changed.connect(_on_stats_changed)
 	GameManager.narrative_outcome.connect(_on_narrative_outcome)

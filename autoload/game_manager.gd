@@ -187,15 +187,15 @@ func _go_to_prompt(id: int) -> void:
 
 	# Generic prompt-entry timeout redirect (replaces the hardcoded id==28 check)
 	if prompt.has("timeoutRedirect"):
-		var tr: Dictionary = prompt["timeoutRedirect"]
-		var value := _resolve_int_value(tr.get("flag", "elapsedTime"))
+		var redirect: Dictionary = prompt["timeoutRedirect"]
+		var value := _resolve_int_value(redirect.get("flag", "elapsedTime"))
 		var triggered := false
-		if tr.has("min") and value >= int(tr["min"]):
+		if redirect.has("min") and value >= int(redirect["min"]):
 			triggered = true
-		if tr.has("max") and value <= int(tr["max"]):
+		if redirect.has("max") and value <= int(redirect["max"]):
 			triggered = true
 		if triggered:
-			_go_to_prompt(int(tr["redirectToPromptId"]))
+			_go_to_prompt(int(redirect["redirectToPromptId"]))
 			return
 
 	current_prompt = prompt
