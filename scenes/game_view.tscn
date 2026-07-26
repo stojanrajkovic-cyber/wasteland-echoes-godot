@@ -93,16 +93,19 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="TopBarMargin" type="MarginContainer" parent="MainVBox"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 
 [node name="TopBar" type="HBoxContainer" parent="MainVBox/TopBarMargin"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="DayLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar"]
@@ -112,14 +115,17 @@ text = "Day 1"
 
 [node name="TopSpacer" type="Control" parent="MainVBox/TopBarMargin/TopBar"]
 layout_mode = 2
+mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="StatsBox" type="HBoxContainer" parent="MainVBox/TopBarMargin/TopBar"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 16
 
 [node name="HPBadge" type="PanelContainer" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("3")
 
 [node name="HPLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/HPBadge"]
@@ -130,6 +136,7 @@ text = "HP 50"
 
 [node name="StaBadge" type="PanelContainer" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("4")
 
 [node name="StaLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/StaBadge"]
@@ -140,6 +147,7 @@ text = "STA 40"
 
 [node name="MorBadge" type="PanelContainer" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("5")
 
 [node name="MorLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/MorBadge"]
@@ -150,16 +158,19 @@ text = "MOR 50"
 
 [node name="MiddleSpacer" type="Control" parent="MainVBox"]
 layout_mode = 2
+mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="BottomMargin" type="MarginContainer" parent="MainVBox"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="BottomVBox" type="VBoxContainer" parent="MainVBox/BottomMargin"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="PromptPanel" type="PanelContainer" parent="MainVBox/BottomMargin/BottomVBox"]
