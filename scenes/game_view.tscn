@@ -118,6 +118,13 @@ layout_mode = 2
 mouse_filter = 2
 size_flags_horizontal = 3
 
+[node name="BagButton" type="Button" parent="MainVBox/TopBarMargin/TopBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(90, 60)
+theme_override_styles/normal = SubResource("1")
+theme_override_font_sizes/font_size = 20
+text = "BAG"
+
 [node name="StatsBox" type="HBoxContainer" parent="MainVBox/TopBarMargin/TopBar"]
 layout_mode = 2
 mouse_filter = 2
@@ -242,3 +249,56 @@ stream = ExtResource("2")
 [node name="LongPressTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="InventoryModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+
+[node name="Dim" type="ColorRect" parent="InventoryModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.55)
+mouse_filter = 0
+
+[node name="PopupCenter" type="CenterContainer" parent="InventoryModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="InventoryPanel" type="PanelContainer" parent="InventoryModal/PopupCenter"]
+custom_minimum_size = Vector2(650, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("2")
+
+[node name="InventoryVBox" type="VBoxContainer" parent="InventoryModal/PopupCenter/InventoryPanel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TitleLabel" type="Label" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text = "Inventory"
+
+[node name="ItemsContainer" type="VBoxContainer" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ScrapLabel" type="Label" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Scrap: 0"
+
+[node name="CloseButton" type="Button" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 70)
+theme_override_styles/normal = SubResource("1")
+theme_override_font_sizes/font_size = 24
+text = "Close"

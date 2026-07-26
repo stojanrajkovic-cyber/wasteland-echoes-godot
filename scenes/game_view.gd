@@ -33,6 +33,24 @@ const REVEAL_FADE_TIME := 0.12
 @onready var choices_container: VBoxContainer = $MainVBox/BottomMargin/BottomVBox/ChoicesContainer
 @onready var sfx_player: AudioStreamPlayer = $SfxPlayer
 @onready var long_press_timer: Timer = $LongPressTimer
+@onready var bag_button: Button = $MainVBox/TopBarMargin/TopBar/BagButton
+@onready var inventory_modal: Control = $InventoryModal
+@onready var inventory_items: VBoxContainer = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ItemsContainer
+@onready var scrap_label: Label = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ScrapLabel
+@onready var inventory_close_button: Button = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/CloseButton
+
+const INVENTORY_ITEMS := [
+	{"key": "hasFood", "label": "Food", "type": "int"},
+	{"key": "hasWater", "label": "Water", "type": "int"},
+	{"key": "hasMedkit", "label": "Medkit", "type": "bool"},
+	{"key": "hasBattery", "label": "Battery", "type": "bool"},
+	{"key": "hasWeapon", "label": "Weapon", "type": "bool"},
+	{"key": "hasMap", "label": "Map", "type": "bool"},
+	{"key": "hasRope", "label": "Rope", "type": "bool"},
+	{"key": "hasLighter", "label": "Lighter", "type": "bool"},
+	{"key": "hasFlashlight", "label": "Flashlight", "type": "bool"},
+	{"key": "hasKnife", "label": "Knife", "type": "bool"},
+]
 
 var _reveal_active := false
 
@@ -44,8 +62,11 @@ func _ready() -> void:
 	GameManager.game_state_changed.connect(_on_game_state_changed)
 	outcome_button.pressed.connect(_on_outcome_dismissed)
 	long_press_timer.timeout.connect(_on_long_press_timeout)
+	bag_button.pressed.connect(_on_bag_pressed)
+	inventory_close_button.pressed.connect(_on_inventory_close_pressed)
 
 	outcome_modal.visible = false
+	inventory_modal.visible = false
 	_on_stats_changed()
 	_render_prompt(GameManager.current_prompt)  # first paint - no flash, the scene-level fade already covers entry
 
@@ -66,6 +87,37 @@ func _on_narrative_outcome(text: String) -> void:
 func _on_outcome_dismissed() -> void:
 	sfx_player.play()
 	outcome_modal.visible = false
+
+
+func _on_bag_pressed() -> void:
+	sfx_player.play()
+	_rebuild_inventory()
+	inventory_modal.visible = true
+
+
+func _on_inventory_close_pressed() -> void:
+	sfx_player.play()
+	inventory_modal.visible = false
+
+
+func _rebuild_inventory() -> void:
+	for child in inventory_items.get_children():
+		child.queue_free()
+
+	for item in INVENTORY_ITEMS:
+		var row := Label.new()
+		row.add_theme_font_size_override("font_size", 24)
+		if item["type"] == "int":
+			var count := int(GameManager.flags.get(item["key"], 0))
+			row.text = "%s: %d" % [item["label"], count]
+		else:
+			var has_it: bool = GameManager.flags.get(item["key"], false) == true
+			row.text = item["label"]
+			row.modulate.a = 1.0 if has_it else 0.35
+		inventory_items.add_child(row)
+
+	var scrap := int(GameManager.flags.get("scrap", 0))
+	scrap_label.text = "Scrap: %d" % scrap
 
 
 func _on_prompt_changed(prompt: Dictionary) -> void:
