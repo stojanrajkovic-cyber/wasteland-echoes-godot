@@ -38,7 +38,6 @@ var _reveal_active := false
 
 
 func _ready() -> void:
-	print("[GameView] _ready() called - script is attached and running")
 	GameManager.prompt_changed.connect(_on_prompt_changed)
 	GameManager.stats_changed.connect(_on_stats_changed)
 	GameManager.narrative_outcome.connect(_on_narrative_outcome)
@@ -142,18 +141,13 @@ func _make_button_style() -> StyleBoxFlat:
 
 
 # ---------------------------------------------------- Long-press reveal --
-# _unhandled_input fires for any press/release that no Control (button,
-# scrollbar, etc.) already consumed - so this naturally only triggers on
-# empty background area, with zero need to manage mouse_filter by hand.
+# Using _input() directly - confirmed by testing to reliably receive events,
+# unlike _gui_input/_unhandled_input which were being swallowed somewhere
+# in the Control GUI layer despite mouse_filter settings. Debounced against
+# duplicate mouse+touch events (emulate_touch_from_mouse fires both for a
+# single physical click).
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		print("[RAW _input] mouse button, pressed=", event.pressed)
-	elif event is InputEventScreenTouch:
-		print("[RAW _input] screen touch, pressed=", event.pressed)
-
-
-func _unhandled_input(event: InputEvent) -> void:
 	var is_press_event := false
 	var pressed := false
 
@@ -167,25 +161,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not is_press_event:
 		return
 
-	print("[LongPress] unhandled_input reached - pressed=", pressed)
-
 	if pressed:
+		if not long_press_timer.is_stopped():
+			return  # already tracking a press - ignore the duplicate mouse/touch echo
 		long_press_timer.start()
-		print("[LongPress] timer started")
 	else:
+		if long_press_timer.is_stopped() and not _reveal_active:
+			return  # duplicate/stray release - nothing to cancel
 		long_press_timer.stop()
-		print("[LongPress] released, reveal_active was ", _reveal_active)
 		if _reveal_active:
 			_set_reveal(false)
 
 
 func _on_long_press_timeout() -> void:
-	print("[LongPress] TIMER FIRED - activating reveal")
 	_set_reveal(true)
 
 
 func _set_reveal(active: bool) -> void:
-	print("[LongPress] _set_reveal(", active, ") called")
 	_reveal_active = active
 	var tween := create_tween()
 	tween.tween_property(main_vbox, "modulate:a", 0.0 if active else 1.0, REVEAL_FADE_TIME)
