@@ -36,7 +36,6 @@ const REVEAL_FADE_TIME := 0.12
 @onready var bag_button: Button = $MainVBox/TopBarMargin/TopBar/BagButton
 @onready var inventory_modal: Control = $InventoryModal
 @onready var items_grid: GridContainer = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ItemsGrid
-@onready var scrap_label: Label = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ScrapRow/ScrapLabel
 @onready var inventory_close_button: Button = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/CloseButton
 
 const INVENTORY_ITEMS := [
@@ -50,6 +49,7 @@ const INVENTORY_ITEMS := [
 	{"key": "hasLighter", "label": "Lighter", "type": "bool", "icon": "icon_lighter.png"},
 	{"key": "hasFlashlight", "label": "Flashlight", "type": "bool", "icon": "icon_flashlight.png"},
 	{"key": "hasKnife", "label": "Knife", "type": "bool", "icon": "icon_knife.png"},
+	{"key": "scrap", "label": "Scrap", "type": "int", "icon": "icon_scrap.png"},
 ]
 
 var _reveal_active := false
@@ -160,9 +160,6 @@ func _rebuild_inventory() -> void:
 
 		cell.add_child(cell_vbox)
 		items_grid.add_child(cell)
-
-	var scrap := int(GameManager.flags.get("scrap", 0))
-	scrap_label.text = "Scrap: %d" % scrap
 
 
 func _on_prompt_changed(prompt: Dictionary) -> void:
