@@ -7,10 +7,20 @@ extends Control
 ## (or .png). If a prompt's imageName isn't found yet, falls back to a
 ## plain dark color so the story is fully playable while art is ported
 ## separately.
+##
+## PromptPanel grows with the text, capped at 50% of screen height - past
+## that, it scrolls internally instead of pushing choices off-screen.
+##
+## Long-press anywhere on the background (not on a button) hides all UI so
+## the player can see the full art; release to bring it back.
 
 const BACKGROUND_DIR := "res://assets/backgrounds/"
+const PROMPT_PANEL_MAX_HEIGHT_RATIO := 0.5
+const REVEAL_FADE_TIME := 0.12
 
 @onready var background: TextureRect = $Background
+@onready var dark_overlay: ColorRect = $DarkOverlay
+@onready var main_vbox: VBoxContainer = $MainVBox
 @onready var day_label: Label = $MainVBox/TopBarMargin/TopBar/DayLabel
 @onready var hp_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/HPBadge/HPLabel
 @onready var sta_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/StaBadge/StaLabel
@@ -18,9 +28,13 @@ const BACKGROUND_DIR := "res://assets/backgrounds/"
 @onready var outcome_modal: Control = $OutcomeModal
 @onready var outcome_label: Label = $OutcomeModal/PopupCenter/OutcomePanel/OutcomeVBox/OutcomeLabel
 @onready var outcome_button: Button = $OutcomeModal/PopupCenter/OutcomePanel/OutcomeVBox/OutcomeButton
-@onready var prompt_label: Label = $MainVBox/BottomMargin/BottomVBox/PromptPanel/PromptLabel
+@onready var prompt_scroll: ScrollContainer = $MainVBox/BottomMargin/BottomVBox/PromptPanel/PromptScroll
+@onready var prompt_label: Label = $MainVBox/BottomMargin/BottomVBox/PromptPanel/PromptScroll/PromptLabel
 @onready var choices_container: VBoxContainer = $MainVBox/BottomMargin/BottomVBox/ChoicesContainer
 @onready var sfx_player: AudioStreamPlayer = $SfxPlayer
+@onready var long_press_timer: Timer = $LongPressTimer
+
+var _reveal_active := false
 
 
 func _ready() -> void:
@@ -29,6 +43,7 @@ func _ready() -> void:
 	GameManager.narrative_outcome.connect(_on_narrative_outcome)
 	GameManager.game_state_changed.connect(_on_game_state_changed)
 	outcome_button.pressed.connect(_on_outcome_dismissed)
+	long_press_timer.timeout.connect(_on_long_press_timeout)
 
 	outcome_modal.visible = false
 	_on_stats_changed()
@@ -62,6 +77,15 @@ func _render_prompt(prompt: Dictionary) -> void:
 	prompt_label.text = prompt.get("text", "")
 	_update_background(prompt.get("imageName", ""))
 	_rebuild_choices(prompt.get("choices", []))
+	_resize_prompt_panel()
+
+
+func _resize_prompt_panel() -> void:
+	# Let the label finish laying out at its new text/width before measuring.
+	await get_tree().process_frame
+	var max_height := get_viewport_rect().size.y * PROMPT_PANEL_MAX_HEIGHT_RATIO
+	var natural_height := prompt_label.get_combined_minimum_size().y
+	prompt_scroll.custom_minimum_size.y = min(natural_height, max_height)
 
 
 func _on_game_state_changed(new_state: int) -> void:
@@ -114,3 +138,49 @@ func _make_button_style() -> StyleBoxFlat:
 	style.content_margin_right = 24
 	style.content_margin_bottom = 14
 	return style
+
+
+# ---------------------------------------------------- Long-press reveal --
+# Background/DarkOverlay have mouse_filter = IGNORE (set in the .tscn), so
+# presses on empty background area (not over a button) fall through to
+# this root Control's _gui_input. Presses on buttons are consumed by the
+# buttons themselves first and never reach here, so normal taps are
+# unaffected.
+
+func _gui_input(event: InputEvent) -> void:
+	var is_press_event := false
+	var pressed := false
+
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		is_press_event = true
+		pressed = event.pressed
+	elif event is InputEventScreenTouch:
+		is_press_event = true
+		pressed = event.pressed
+
+	if not is_press_event:
+		return
+
+	if pressed:
+		long_press_timer.start()
+	else:
+		long_press_timer.stop()
+		if _reveal_active:
+			_set_reveal(false)
+
+
+func _on_long_press_timeout() -> void:
+	_set_reveal(true)
+
+
+func _set_reveal(active: bool) -> void:
+	_reveal_active = active
+	var tween := create_tween()
+	tween.tween_property(main_vbox, "modulate:a", 0.0 if active else 1.0, REVEAL_FADE_TIME)
+	tween.parallel().tween_property(dark_overlay, "modulate:a", 0.0 if active else 1.0, REVEAL_FADE_TIME)
+	if not active:
+		main_vbox.visible = true
+	tween.finished.connect(func():
+		if active:
+			main_vbox.visible = false
+	, CONNECT_ONE_SHOT)

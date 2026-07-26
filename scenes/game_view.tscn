@@ -76,6 +76,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
 
@@ -84,6 +85,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0.12)
 
 [node name="MainVBox" type="VBoxContainer" parent="."]
@@ -164,8 +166,13 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_styles/panel = SubResource("1")
 
-[node name="PromptLabel" type="Label" parent="MainVBox/BottomMargin/BottomVBox/PromptPanel"]
+[node name="PromptScroll" type="ScrollContainer" parent="MainVBox/BottomMargin/BottomVBox/PromptPanel"]
 layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="PromptLabel" type="Label" parent="MainVBox/BottomMargin/BottomVBox/PromptPanel/PromptScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
 autowrap_mode = 3
 theme_override_font_sizes/font_size = 30
 text = ""
@@ -220,3 +227,7 @@ text = "Continue"
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2")
+
+[node name="LongPressTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
