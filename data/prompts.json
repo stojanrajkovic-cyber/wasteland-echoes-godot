@@ -330,7 +330,7 @@
   {
     "id": 9,
     "day": "Day 2",
-    "text": "You snap out of sleep, startled by a distant crash. Your body aches. In the murky morning gloom, you crawl to your feet and survey the street outside. The way forward—a tangle of burnt cars and blackened debris. Sirens wail somewhere far off. The hope you carried last night feels thin in your chest. The city seems to have changed again while you slept.",
+    "text": "A crash somewhere distant tears you out of sleep before you're ready for it, heart hammering before your mind even catches up. Every joint protests as you crawl upright, the cardboard nest doing little to disguise how hard the ground was. Grey morning light seeps into the alley, thin and unconvincing. What you can see of the street ahead is worse than you remembered\u2014a tangle of burnt-out cars fused together by heat and time, blackened debris stacked chest-high in places. Sirens cry somewhere far off, for no one, answering nothing. Whatever fragile hope carried you through last night feels thin now, almost embarrassing in the daylight. The city rearranges itself while you sleep, you're starting to understand. It never holds still long enough to trust.",
     "imageName": "day2_blocked_street",
     "choices": [
       {
@@ -375,7 +375,7 @@
   {
     "id": 10,
     "day": "Day 2",
-    "text": "The metal creaks beneath your weight. Broken glass bites your skin. Halfway over, your foot slips—a sharp pain shoots up your leg. You manage not to cry out. By the time you reach the other side, you're bleeding and breathing hard.",
+    "text": "The wreckage groans under your weight like it resents being climbed. Broken glass finds every unguarded inch of skin, small cuts you'll feel later more than now. Halfway across, your foot finds nothing where solid metal should be, and the fall that follows sends a white line of pain up through your leg. You bite down on the sound that wants to come out\u2014noise is a currency here, and you can't afford to spend it. By the time your boots hit solid ground on the other side, you're bleeding from three places you can count and breathing like you've run a mile.",
     "imageName": "day2_over_wreckage",
     "choices": [
       {
@@ -421,7 +421,7 @@
   {
     "id": 11,
     "day": "Day 2",
-    "text": "You wind through a labyrinth of ruined alleys, only to be blocked by three survivors. Gaunt, wary, and all too alert. They eye your pack, fingers twitching toward makeshift weapons. Tension thickens the air.",
+    "text": "The alleys twist without warning, one indistinguishable from the next, until they don't\u2014until three figures step out to block the only way through. Gaunt, hollow-eyed, alert in the specific way of people who've learned that inattention gets you killed. Their gazes go straight to your pack the way starving men look at food. Fingers drift toward pipes, a broken bottle, something sharpened down to a point. Nobody's spoken yet. The silence does the threatening for them.",
     "imageName": "day2_survivor_encounter",
     "choices": [
       {
@@ -491,7 +491,7 @@
   {
     "id": 12,
     "day": "Day 2",
-    "text": "You press into the shadows, letting time slip away. Hunger gnaws at you and fear grows sharper.",
+    "text": "YYou fold yourself into the shadows and let the minutes bleed past, one after another, indistinguishable. Hunger gnaws steadily at your insides, patient as a debt collector. Fear sharpens with every sound that might be footsteps and probably isn't. Stillness was supposed to be the safe choice. It doesn't feel that way anymore.",
     "imageName": "day2_waiting",
     "choices": [
       {
@@ -540,7 +540,7 @@
   {
     "id": 13,
     "day": "Day 2",
-    "text": "You limp onward. The road ahead opens up, but your wound aches with every step. You think you hear voices up ahead, or maybe it’s just the city whispering in your ear.",
+    "text": "You limp forward because forward is the only direction that means anything now. The road widens ahead, open and exposed, and your wound announces itself with every single step, a dull insistent throb keeping time with your heartbeat. Somewhere up ahead\u2014maybe\u2014there are voices. Or maybe the city's just talking to itself again, the way it does, wind through broken glass sounding almost like language if you're tired enough to believe it.",
     "imageName": "day2_street_clears",
     "choices": [
       {
@@ -569,7 +569,7 @@
   {
     "id": 14,
     "day": "Day 2",
-    "text": "The survivors nod warily and step aside, giving you a narrow path through the rubble. One mutters a warning about the 'shadows' further up the road. For a fleeting moment, you remember what trust felt like.",
+    "text": "Something shifts in their posture\u2014not welcome, nothing that generous, but a wary kind of permission. They step aside, opening a narrow path through the rubble just wide enough for one person to pass. One of them mutters something under his breath as you go, a warning about \u201cshadows\u201d further up the road, gone too fast to ask what he means. For one unguarded second, walking free between them, you remember what it used to feel like to trust a stranger. It doesn't last. But you remember it.",
     "imageName": "day2_safe_passage",
     "choices": [
       {
@@ -607,7 +607,7 @@
   {
     "id": 15,
     "day": "Day 2",
-    "text": "One of the survivors grabs your arm. You try to pull free, but another jams a pipe against your chest. In moments, your bag is lighter, your nerves raw.",
+    "text": "A hand closes around your arm before you can react, grip tighter than it has any right to be on someone that thin. You wrench back, and that's when the pipe finds your chest, hard enough to steal the breath out of you. It's over in seconds\u2014the kind of efficient, practiced violence that tells you this isn't their first time. Your pack is lighter when they finally let you go. Your hands won't stop shaking for a while after.",
     "imageName": "day2_hostile_survivors",
     "choices": [
       {
@@ -649,7 +649,7 @@
   {
     "id": 16,
     "day": "Day 2",
-    "text": "While you rest, shadows detach from the ruins—another band of scavengers. You wake to find someone rifling your bag.",
+    "text": "Sleep takes you further than it should have. You surface to a hand already inside your pack, fingers working quick and practiced through what little you have left, a shape crouched over you that resolves into a person only once your eyes fully adjust to the dark. However long you were out, it was long enough for someone to find you, and that thought alone is enough to flood you with adrenaline before you've even decided what to do about it.",
     "imageName": "day2_alley_ambush",
     "choices": [
       {
@@ -687,7 +687,7 @@
   {
     "id": 17,
     "day": "Day 2",
-    "text": "You finally leave the worst of the city behind. Ruined buildings give way to blasted fields and distant mountains. The air feels different—emptier, somehow cleaner. For the first time in days, you let yourself imagine that Haven might be real.",
+    "text": "The worst of the city finally releases you. Ruined blocks give way, gradually, to blasted-out fields and the pale grey suggestion of mountains on the horizon. The air changes too\u2014thinner, emptier, but somehow cleaner than anything you've breathed in days, like the ruins themselves had a smell you'd stopped noticing until it was gone. For the first time since you left the lab, you let yourself think the word Haven and actually mean it, actually let it feel possible rather than just a destination on a map. It's a dangerous thing to let yourself hope. You let yourself do it anyway.",
     "imageName": "day2_outskirts",
     "choices": [
       {
@@ -710,7 +710,7 @@
   {
     "id": 18,
     "day": "Day 2",
-    "text": "You fumble through your pack, searching for something valuable to trade. But your fingers close on nothing but empty wrappers and scraps. The survivors’ eyes narrow with disappointment. One spits at your feet, and another turns away, muttering. With nothing left to offer, you are forced to back away, nerves buzzing with shame and unease.",
+    "text": "Your hands search your pack with rising urgency, closing on nothing but empty wrappers and scraps too worthless to matter. The survivors watch you fail to produce anything, their expressions curdling from wary interest into something closer to contempt. One spits, deliberately, at your feet. Another just turns away, muttering something you're glad you can't quite hear. You back off with nothing to show for the encounter but a hot flush of shame and the unpleasant awareness of exactly how little you have left to bargain with, out here, where everything has a price.",
     "imageName": "day2_trade_fail",
     "choices": [
       {
@@ -1668,7 +1668,7 @@
   {
     "id": 1313131,
     "day": "Day 2",
-    "text": "You push on, lungs burning, ribs aching. The ground rises into a jagged ridge — the last barrier. Each step is fire. You crest the top, barely conscious, and drop to your knees. Blood soaks your side. The medkit’s in your pack. You might still have time... if you can move.",
+    "text": "You push on because stopping isn't a real option anymore, lungs burning, ribs grinding against each other with every breath. The ground rises into a jagged ridge, the last real barrier between you and whatever comes next, and each step up it costs more than the last one did. You crest the top on willpower alone and your knees give out the instant the ground levels off. Blood has soaked all the way through your side, more of it than you want to look at directly. The medkit is right there, a few inches away in your pack, close enough to touch. Whether that's close enough to matter depends entirely on what's left in you.",
     "imageName": "day2_pushing_on_injured",
     "soundEffect": "",
     "choices": [
@@ -1709,7 +1709,7 @@
   {
     "id": 1313132,
     "day": "Day 2",
-    "text": "Your voice cracked as you called out, desperate and hoarse. For a moment, there was nothing but wind—and then, the sound of boots on gravel. A tall, wiry man in tattered layers appeared from behind a collapsed billboard. He raised a hand, cautious but not hostile. “I heard you,” he said. “You look like you’ve been through hell.” He offers a leather water pouch and gestures to a shady spot under a rusted overpass. You take the water. It’s clean. Life-saving. As you sit, he eyes your backpack. “I’ve got nothing left,” he mutters. “You got anything to spare?”",
+    "text": "Your voice breaks on the shout, more desperation than sound by the end of it. For a long moment there's nothing back but wind moving through empty windows\u2014and then, boots on gravel, unhurried, coming closer. A tall, wiry man steps out from behind a collapsed billboard, layers of scavenged clothing hanging loose off a frame that's clearly gone hungry more than once. He raises a hand slowly, palm out, more caution than threat. \u201cI heard you,\u201d he says, close enough now to really look at you. \u201cYou look like you've been through hell.\u201d He offers a leather water pouch without being asked, nods toward a shaded patch under a rusted overpass. You drink like you've forgotten how water is supposed to taste\u2014clean, cold, unbelievably generous. He watches you drink, and something in his expression shifts once you're steadier. His eyes drop to your pack. \u201cI've got nothing left,\u201d he says, quieter now, like the admission costs him something. \u201cYou got anything to spare?\u201d",
     "imageName": "day2_meeting_caleb",
     "soundEffect": "",
     "choices": [
