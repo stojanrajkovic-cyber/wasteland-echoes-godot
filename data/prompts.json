@@ -1719,10 +1719,10 @@
         "nextPromptId": 17,
         "requiredIntFlags": {
           "hasFood": {
-            "min": 2
+            "min": 1
           },
           "hasWater": {
-            "min": 2
+            "min": 1
           }
         },
         "consequence": {
