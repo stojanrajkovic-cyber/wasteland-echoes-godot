@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://pe8mcres5mqw"]
+[gd_scene format=3 uid="uid://pe8mcres5mqw"]
 
 [ext_resource type="Script" uid="uid://b612kgfpxyur3" path="res://scenes/main_menu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dwl0xxmvs01lf" path="res://assets/ui/main_menu_background.jpg" id="2"]
 [ext_resource type="AudioStream" uid="uid://63c6wn45hci5" path="res://assets/audio/music/background_music1.mp3" id="3"]
 [ext_resource type="AudioStream" uid="uid://cyv46d73nysa8" path="res://assets/audio/sfx/button_tap.wav" id="4"]
-[ext_resource type="Texture2D" path="res://assets/ui/title_logo.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dmlbp01ev3wfd" path="res://assets/ui/title_logo.png" id="5"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 content_margin_left = 24.0
@@ -22,6 +22,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1669685306]
@@ -59,9 +61,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="TitleLogo" type="TextureRect" parent="Content"]
-layout_mode = 2
+[node name="TitleLogo" type="TextureRect" parent="Content" unique_id=376602646]
 custom_minimum_size = Vector2(0, 520)
+layout_mode = 2
 texture = ExtResource("5")
 expand_mode = 1
 stretch_mode = 5
