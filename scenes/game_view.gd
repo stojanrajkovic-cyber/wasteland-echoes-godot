@@ -40,6 +40,7 @@ const REVEAL_FADE_TIME := 0.12
 
 const MINIGAME_SCENES := {
 	"radio_tuning": "res://scenes/minigames/radio_tuning.tscn",
+	"keypad_entry": "res://scenes/minigames/keypad_entry.tscn",
 }
 
 const INVENTORY_ITEMS := [
