@@ -939,16 +939,41 @@
       {
         "text": "Enter the combination from your old notes.",
         "soundEffect": "",
-        "nextPromptId": 27,
-        "consequence": {
-          "morDelta": 3,
-          "timeDelta": 2
-        },
-        "narrativeOutcome": "The safe clicks open. Inside lies the Key—smaller than you remembered, stamped with the Scutum Project seal, and impossibly still exactly where it was supposed to be.",
-        "setFlags": {
-          "gotUSB": {
-            "type": "bool",
-            "value": true
+        "launchMinigame": {
+          "type": "keypad_entry",
+          "config": {
+            "codeLength": 4,
+            "maxAttempts": 3,
+            "code": null
+          },
+          "onSuccess": {
+            "nextPromptId": 27,
+            "narrativeOutcome": "The safe clicks open. Inside lies the Key—smaller than you remembered, stamped with the Scutum Project seal, and impossibly still exactly where it was supposed to be.",
+            "consequence": {
+              "morDelta": 3,
+              "timeDelta": 2
+            },
+            "setFlags": {
+              "gotUSB": {
+                "type": "bool",
+                "value": true
+              }
+            }
+          },
+          "onFailure": {
+            "nextPromptId": 27,
+            "narrativeOutcome": "Three wrong guesses is enough. You give up on memory and go to force instead—the crowbar screams against steel, and by the time the door gives, your palm is bleeding and your patience is gone.",
+            "consequence": {
+              "hpDelta": -2,
+              "morDelta": -3,
+              "timeDelta": 10
+            },
+            "setFlags": {
+              "gotUSB": {
+                "type": "bool",
+                "value": true
+              }
+            }
           }
         }
       },
