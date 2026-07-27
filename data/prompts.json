@@ -932,7 +932,7 @@
   {
     "id": 26,
     "day": "Day 3",
-    "text": "A steel safe sits behind the ransacked desk, its digital lock somehow still holding after everything else in this building has failed. Whatever's inside, your old boss cared enough to protect it even as the world ended around him. You still remember the combination, or you think you do—three years is a long time to trust your own memory.",
+    "text": "A steel safe sits behind the ransacked desk, its digital lock somehow still holding after everything else in this building has failed. Whatever's inside, your old boss cared enough to protect it even as the world ended around him. You still remember the combination—or you're fairly sure you do. 0-4-1-7. His daughter's birthday, he told you once, half-joking that nobody would ever guess something so obvious. Three years is a long time to trust a memory like that, but it's what you've got.",
     "imageName": "day3_prompt_safe",
     "soundEffect": "",
     "choices": [
@@ -944,7 +944,7 @@
           "config": {
             "codeLength": 4,
             "maxAttempts": 3,
-            "code": null
+            "code": "0417"
           },
           "onSuccess": {
             "nextPromptId": 27,
