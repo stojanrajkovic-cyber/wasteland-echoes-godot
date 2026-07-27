@@ -38,6 +38,10 @@ const REVEAL_FADE_TIME := 0.12
 @onready var items_grid: GridContainer = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/ItemsGrid
 @onready var inventory_close_button: Button = $InventoryModal/PopupCenter/InventoryPanel/InventoryVBox/CloseButton
 
+const MINIGAME_SCENES := {
+	"radio_tuning": "res://scenes/minigames/radio_tuning.tscn",
+}
+
 const INVENTORY_ITEMS := [
 	{"key": "hasFood", "label": "Food", "type": "int", "icon": "icon_food.png"},
 	{"key": "hasWater", "label": "Water", "type": "int", "icon": "icon_water.png"},
@@ -60,6 +64,7 @@ func _ready() -> void:
 	GameManager.stats_changed.connect(_on_stats_changed)
 	GameManager.narrative_outcome.connect(_on_narrative_outcome)
 	GameManager.game_state_changed.connect(_on_game_state_changed)
+	GameManager.minigame_requested.connect(_on_minigame_requested)
 	outcome_button.pressed.connect(_on_outcome_dismissed)
 	long_press_timer.timeout.connect(_on_long_press_timeout)
 	bag_button.pressed.connect(_on_bag_pressed)
@@ -180,6 +185,13 @@ func _resize_prompt_panel() -> void:
 	var max_height := get_viewport_rect().size.y * PROMPT_PANEL_MAX_HEIGHT_RATIO
 	var natural_height := prompt_label.get_combined_minimum_size().y
 	prompt_scroll.custom_minimum_size.y = min(natural_height, max_height)
+
+
+func _on_minigame_requested(minigame_type: String, _config: Dictionary) -> void:
+	if not MINIGAME_SCENES.has(minigame_type):
+		push_error("GameView: no scene registered for minigame type '%s'" % minigame_type)
+		return
+	SceneTransition.change_scene(MINIGAME_SCENES[minigame_type])
 
 
 func _on_game_state_changed(new_state: int) -> void:

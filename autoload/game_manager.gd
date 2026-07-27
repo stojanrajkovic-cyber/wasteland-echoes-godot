@@ -22,6 +22,7 @@ signal game_state_changed(new_state: int)
 signal prompt_changed(prompt: Dictionary)
 signal stats_changed
 signal narrative_outcome(text: String)
+signal minigame_requested(minigame_type: String, config: Dictionary)
 
 enum GameState { SPLASH, MAIN_MENU, PLAYING, SETTINGS, GAME_OVER, GAME_WON }
 
@@ -41,6 +42,8 @@ var current_prompt_id: int = STARTING_PROMPT_ID
 var current_prompt: Dictionary = {}
 var all_prompts: Dictionary = {}
 var last_narrative_outcome: String = ""
+
+var _pending_minigame: Dictionary = {}
 
 
 func _ready() -> void:
@@ -90,6 +93,15 @@ func continue_game() -> void:
 
 
 func select_choice(choice: Dictionary) -> void:
+	# A minigame choice hands control to a minigame scene instead of resolving
+	# immediately - the outcome (and its own nextPromptId) arrives later via
+	# resolve_minigame() once the player has won or lost.
+	if choice.has("launchMinigame"):
+		var launch: Dictionary = choice["launchMinigame"]
+		_pending_minigame = launch
+		minigame_requested.emit(launch.get("type", ""), launch.get("config", {}))
+		return
+
 	var next_id: int = int(choice.get("nextPromptId", 0))
 
 	# Sentinel return-to-menu signals
@@ -164,6 +176,60 @@ func select_choice(choice: Dictionary) -> void:
 		return
 
 	# 5. Move to the next prompt
+	_go_to_prompt(next_id)
+
+	if current_prompt.get("id", 0) == 201:  # Haven / win condition
+		_set_state(GameState.GAME_WON)
+
+	_save_game()
+
+
+## Called by a minigame scene once it's done, in place of select_choice().
+## Applies the onSuccess/onFailure branch of the launchMinigame that's still
+## pending, the same way branchOnFlag's ifTrue/ifFalse is applied above.
+## The config sub-dict for the minigame that was just requested, so the
+## minigame scene (which arrives via a scene change and can't receive
+## constructor args) can pull its setup after minigame_requested fires.
+func pending_minigame_config() -> Dictionary:
+	return _pending_minigame.get("config", {})
+
+
+func resolve_minigame(success: bool) -> void:
+	if _pending_minigame.is_empty():
+		push_error("GameManager: resolve_minigame() called with no pending minigame")
+		return
+
+	var launch := _pending_minigame
+	_pending_minigame = {}
+
+	var outcome: Dictionary = launch.get("onSuccess", {}) if success else launch.get("onFailure", {})
+	var next_id: int = int(outcome.get("nextPromptId", 0))
+
+	last_narrative_outcome = outcome.get("narrativeOutcome", "")
+	if outcome.has("consequence"):
+		_apply_change(outcome["consequence"])
+	if outcome.has("setFlags"):
+		_apply_set_flags(outcome["setFlags"])
+
+	if last_narrative_outcome != "":
+		narrative_outcome.emit(last_narrative_outcome)
+
+	if stats["hp"] < 5:
+		_trigger_game_over(
+			"Your wounds are grievous, vision blurring. The strength to go on has fled. Darkness consumes you.",
+			"prompt_game_over_death")
+		return
+	if stats["sta"] < 5:
+		_trigger_game_over(
+			"An overwhelming weariness drags you down. Each breath is a monumental effort. You collapse, unable to move another step.",
+			"prompt_game_over_exhaustion")
+		return
+	if stats["mor"] < 5:
+		_trigger_game_over(
+			"The weight of this broken world crushes your spirit. Hope is a forgotten word. You find a quiet place and simply... stop.",
+			"prompt_game_over_despair")
+		return
+
 	_go_to_prompt(next_id)
 
 	if current_prompt.get("id", 0) == 201:  # Haven / win condition
