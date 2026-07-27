@@ -1438,13 +1438,122 @@
   {
     "id": 300,
     "day": "Day 6",
-    "text": "[END OF CURRENT STORY CONTENT] Day 5 is behind you, whichever way you crossed it. Day 6 hasn't been written yet.",
+    "text": "Whatever the road took out of you yesterday, today it wants more. You push on through grey morning light, the world around you scarred but somehow still holding its shape—buildings reduced to skeletons, but skeletons all the same, still standing where roofs and walls used to be. You've heard the stories about what's further along this route: raiders working these roads like tollbooth operators, taking whatever people can't defend. You'd rather not find out if the stories are true.",
+    "imageName": "day6_grey_morning",
+    "soundEffect": "",
+    "choices": [
+      {"text": "Continue", "soundEffect": "", "nextPromptId": 301, "narrativeOutcome": ""}
+    ],
+    "backgroundEffect": {"type": "none"}
+  },
+  {
+    "id": 301,
+    "day": "Day 6",
+    "text": "A shape resolves out of the roadside brush before you fully register it as a person—a man, older, dragging one leg like it doesn't fully answer to him anymore. He doesn't reach for anything when he sees you, just raises a hand, palm out. “Not going to hurt you,” he says, voice cracked with thirst. “Just need... a favor. There's a settlement, Ironhold, few days east. My daughter's there. I can't make it that far like this. If you're headed that way—” He holds out a folded, grubby piece of paper. “Just tell them Sam's alive. That's all. That's everything, actually.”",
+    "imageName": "day6_wounded_traveler",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Take the message. Tell them Sam's alive.",
+        "soundEffect": "",
+        "nextPromptId": 303,
+        "consequence": {"morDelta": 4},
+        "setFlags": {"carryingMessageForIronhold": {"type": "bool", "value": true}},
+        "narrativeOutcome": "He presses the note into your hand like it weighs more than paper should. “Thank you,” he says, and means it more than the words can carry."
+      },
+      {
+        "text": "I can't carry your burdens too. I'm sorry.",
+        "soundEffect": "",
+        "nextPromptId": 303,
+        "narrativeOutcome": "He nods like he expected that, folds the note back into his pocket, and doesn't ask again. You keep walking, and try not to think about it."
+      }
+    ],
+    "backgroundEffect": {"type": "none"}
+  },
+  {
+    "id": 303,
+    "day": "Day 6",
+    "text": "You leave him where you found him, the note—or the memory of refusing it—sitting strange in your chest either way. Not far up the road, tucked behind an overturned truck, you spot something worth stopping for: a portable radio, dust-caked but intact, one working battery still in the slot. If there's anyone else out here worth finding, this might be how you find them—before whoever's been watching this stretch of road finds you first.",
+    "imageName": "day6_found_radio",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Try to find a signal.",
+        "soundEffect": "",
+        "launchMinigame": {
+          "type": "radio_tuning",
+          "config": {
+            "timeLimit": 25,
+            "tolerance": 4,
+            "targetFrequency": null
+          },
+          "onSuccess": {
+            "nextPromptId": 305,
+            "narrativeOutcome": "Through the static, a voice—thin, tired, but real. Just a few words before the signal drifts again: coordinates, a name, a warning about the road ahead. Whoever they are, they don't know you exist, and you're grateful for that.",
+            "consequence": {"morDelta": 3}
+          },
+          "onFailure": {
+            "nextPromptId": 306,
+            "narrativeOutcome": "The signal dies mid-search, and in the sudden silence you hear it—boots, several sets, already too close.",
+            "consequence": {"staDelta": -3}
+          }
+        }
+      }
+    ],
+    "backgroundEffect": {"type": "none"}
+  },
+  {
+    "id": 305,
+    "day": "Day 6",
+    "text": "You switch the radio off to save the battery and keep moving, a little less alone than you were an hour ago. Whatever else this road has waiting, at least you know you're not the only one still out here.",
+    "imageName": "day6_radio_signal_found",
+    "soundEffect": "",
+    "choices": [
+      {"text": "Continue", "soundEffect": "", "nextPromptId": 310, "narrativeOutcome": ""}
+    ],
+    "backgroundEffect": {"type": "none"}
+  },
+  {
+    "id": 306,
+    "day": "Day 6",
+    "text": "A voice calls out, amused rather than alarmed: “Well, look what wandered into our stretch.” Three of them step out from cover, unhurried, confident in a way that only comes from doing this exact thing many times before.",
+    "imageName": "day6_raiders_confronted",
+    "soundEffect": "",
+    "choices": [
+      {
+        "text": "Try to talk your way past them.",
+        "soundEffect": "",
+        "nextPromptId": 310,
+        "consequence": {"morDelta": -3},
+        "narrativeOutcome": "You hand over what you have to spare, keep your voice level, and don't let them see how fast your heart is going. It's enough. They let you pass, already losing interest before you're out of sight."
+      },
+      {
+        "text": "Slip away while they're still posturing.",
+        "soundEffect": "",
+        "nextPromptId": 310,
+        "consequence": {"staDelta": -8},
+        "narrativeOutcome": "You're moving before you've fully decided to, cutting through a gap in the wreckage while their attention is still on the show. By the time they notice, you're already gone."
+      },
+      {
+        "text": "Damage their gear and run in the chaos.",
+        "soundEffect": "",
+        "nextPromptId": 310,
+        "consequence": {"hpDelta": -5, "staDelta": -5, "morDelta": 2},
+        "narrativeOutcome": "You put your shoulder into the nearest thing that looks flammable and run before you see what happens. Shouting erupts behind you—confused, furious, but no longer organized. It costs you, but you're still standing."
+      }
+    ],
+    "backgroundEffect": {"type": "none"}
+  },
+  {
+    "id": 310,
+    "day": "Day 7",
+    "text": "[END OF CURRENT STORY CONTENT] Day 6 is behind you. Day 7—Ironhold's gates—hasn't been written yet.",
     "imageName": "",
     "soundEffect": "",
     "choices": [
-      { "text": "Return to Main Menu", "nextPromptId": -3000, "narrativeOutcome": "" }
+      {"text": "Return to Main Menu", "nextPromptId": -3000, "narrativeOutcome": ""}
     ],
-    "backgroundEffect": { "type": "none" },
+    "backgroundEffect": {"type": "none"},
     "isPlaceholder": true
   },
   {
