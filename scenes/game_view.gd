@@ -17,10 +17,14 @@ extends Control
 const BACKGROUND_DIR := "res://assets/backgrounds/"
 const PROMPT_PANEL_MAX_HEIGHT_RATIO := 0.5
 const REVEAL_FADE_TIME := 0.12
+const BASE_TOP_MARGIN := 40
+const BASE_BOTTOM_MARGIN := 50
 
 @onready var background: TextureRect = $Background
 @onready var dark_overlay: ColorRect = $DarkOverlay
 @onready var main_vbox: VBoxContainer = $MainVBox
+@onready var top_bar_margin: MarginContainer = $MainVBox/TopBarMargin
+@onready var bottom_margin: MarginContainer = $MainVBox/BottomMargin
 @onready var day_label: Label = $MainVBox/TopBarMargin/TopBar/DayLabel
 @onready var hp_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/HPBadge/HPLabel
 @onready var sta_label: Label = $MainVBox/TopBarMargin/TopBar/StatsBox/StaBadge/StaLabel
@@ -61,6 +65,8 @@ var _reveal_active := false
 
 
 func _ready() -> void:
+	_apply_safe_area_margins()
+
 	GameManager.prompt_changed.connect(_on_prompt_changed)
 	GameManager.stats_changed.connect(_on_stats_changed)
 	GameManager.narrative_outcome.connect(_on_narrative_outcome)
@@ -75,6 +81,28 @@ func _ready() -> void:
 	inventory_modal.visible = false
 	_on_stats_changed()
 	_render_prompt(GameManager.current_prompt)  # first paint - no flash, the scene-level fade already covers entry
+
+
+func _apply_safe_area_margins() -> void:
+	if OS.get_name() != "iOS" and OS.get_name() != "Android":
+		return
+
+	var screen_size := DisplayServer.screen_get_size()
+	if screen_size.y <= 0:
+		return
+
+	var safe_area := DisplayServer.get_display_safe_area()
+	var top_inset_native := safe_area.position.y
+	var bottom_inset_native := screen_size.y - (safe_area.position.y + safe_area.size.y)
+	if top_inset_native <= 0 and bottom_inset_native <= 0:
+		return
+
+	var scale_factor := get_viewport().get_visible_rect().size.y / float(screen_size.y)
+	var top_inset_scaled := top_inset_native * scale_factor
+	var bottom_inset_scaled := bottom_inset_native * scale_factor
+
+	top_bar_margin.add_theme_constant_override("margin_top", BASE_TOP_MARGIN + int(top_inset_scaled))
+	bottom_margin.add_theme_constant_override("margin_bottom", BASE_BOTTOM_MARGIN + int(bottom_inset_scaled))
 
 
 func _on_stats_changed() -> void:
