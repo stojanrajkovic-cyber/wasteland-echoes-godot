@@ -9,7 +9,6 @@ const GAME_VIEW_SCENE := "res://scenes/game_view.tscn"
 const SETTINGS_SCENE := "res://scenes/settings_view.tscn"
 
 @onready var continue_button: Button = $Content/ContinueButton
-@onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var sfx_player: AudioStreamPlayer = $SfxPlayer
 
 
@@ -22,9 +21,6 @@ func _ready() -> void:
 	$Content/StoryButton.pressed.connect(_on_story_pressed)
 	$Content/SettingsButton.pressed.connect(_on_settings_pressed)
 	$Content/CreditsButton.pressed.connect(_on_credits_pressed)
-
-	# Manual loop - simplest way to loop without touching .import metadata
-	music_player.finished.connect(func(): music_player.play())
 
 
 func _play_tap() -> void:

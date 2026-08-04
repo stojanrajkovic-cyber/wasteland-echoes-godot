@@ -22,6 +22,7 @@ config/features=PackedStringArray("4.7", "Mobile")
 
 GameManager="*res://autoload/game_manager.gd"
 SceneTransition="*res://autoload/scene_transition.tscn"
+MusicManager="*res://autoload/music_manager.tscn"
 
 [display]
 
@@ -38,3 +39,4 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

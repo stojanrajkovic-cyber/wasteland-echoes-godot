@@ -343,6 +343,10 @@ func _trigger_game_over(text: String, image_name: String) -> void:
 	_set_state(GameState.GAME_OVER)
 
 
+func quit_to_main_menu() -> void:
+	_return_to_main_menu(false, false, false)
+
+
 func _return_to_main_menu(from_game_over: bool = false, from_game_won: bool = false, from_end_of_content: bool = false) -> void:
 	if current_state == GameState.PLAYING and not from_game_over and not from_game_won and not from_end_of_content:
 		_save_game()

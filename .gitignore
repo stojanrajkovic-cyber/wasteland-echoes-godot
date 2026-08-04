@@ -4,3 +4,13 @@
 
 # macOS
 .DS_Store
+
+# iOS export artifacts (should never be exported into this folder, but just in case)
+*.ipa
+*.xcarchive
+*.xcodeproj/
+*.xcframework/
+ExportOptions.plist
+DistributionSummary.plist
+Packaging.log
+PrivacyInfo.xcprivacy

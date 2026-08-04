@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b612kgfpxyur3" path="res://scenes/main_menu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dwl0xxmvs01lf" path="res://assets/ui/main_menu_background.jpg" id="2"]
-[ext_resource type="AudioStream" uid="uid://63c6wn45hci5" path="res://assets/audio/music/background_music1.mp3" id="3"]
 [ext_resource type="AudioStream" uid="uid://cyv46d73nysa8" path="res://assets/audio/sfx/button_tap.wav" id="4"]
 [ext_resource type="Texture2D" uid="uid://dmlbp01ev3wfd" path="res://assets/ui/title_logo.png" id="5"]
 
@@ -106,10 +105,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("1")
 text = "Settings"
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1219904848]
-stream = ExtResource("3")
-autoplay = true
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="." unique_id=1215120360]
 stream = ExtResource("4")

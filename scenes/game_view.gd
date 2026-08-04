@@ -15,7 +15,7 @@ extends Control
 ## the player can see the full art; release to bring it back.
 
 const BACKGROUND_DIR := "res://assets/backgrounds/"
-const PROMPT_PANEL_MAX_HEIGHT_RATIO := 0.5
+const PROMPT_PANEL_MAX_HEIGHT_RATIO := 0.4
 const REVEAL_FADE_TIME := 0.12
 const BASE_TOP_MARGIN := 40
 const BASE_BOTTOM_MARGIN := 50
@@ -35,6 +35,7 @@ const BASE_BOTTOM_MARGIN := 50
 @onready var prompt_scroll: ScrollContainer = $MainVBox/BottomMargin/BottomVBox/PromptPanel/PromptScroll
 @onready var prompt_label: Label = $MainVBox/BottomMargin/BottomVBox/PromptPanel/PromptScroll/PromptLabel
 @onready var choices_container: VBoxContainer = $MainVBox/BottomMargin/BottomVBox/ChoicesContainer
+@onready var main_menu_button: Button = $MainVBox/BottomMargin/BottomVBox/MainMenuButton
 @onready var sfx_player: AudioStreamPlayer = $SfxPlayer
 @onready var long_press_timer: Timer = $LongPressTimer
 @onready var bag_button: Button = $MainVBox/TopBarMargin/TopBar/BagButton
@@ -76,6 +77,7 @@ func _ready() -> void:
 	long_press_timer.timeout.connect(_on_long_press_timeout)
 	bag_button.pressed.connect(_on_bag_pressed)
 	inventory_close_button.pressed.connect(_on_inventory_close_pressed)
+	main_menu_button.pressed.connect(_on_main_menu_pressed)
 
 	outcome_modal.visible = false
 	inventory_modal.visible = false
@@ -132,6 +134,11 @@ func _on_bag_pressed() -> void:
 func _on_inventory_close_pressed() -> void:
 	sfx_player.play()
 	inventory_modal.visible = false
+
+
+func _on_main_menu_pressed() -> void:
+	sfx_player.play()
+	GameManager.quit_to_main_menu()
 
 
 func _rebuild_inventory() -> void:
