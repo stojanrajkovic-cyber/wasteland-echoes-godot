@@ -159,7 +159,7 @@ func _rebuild_inventory() -> void:
 
 		var label := Label.new()
 		label.text = item["label"] if item["type"] == "bool" else "%s: %s" % [item["label"], count_text]
-		label.add_theme_font_size_override("font_size", 20)
+		label.add_theme_font_size_override("font_size", 28)
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.modulate.a = 1.0 if owned else 0.45
 		cell_vbox.add_child(label)
@@ -221,9 +221,9 @@ func _rebuild_choices(choices: Array) -> void:
 			continue
 		var button := Button.new()
 		button.text = choice.get("text", "")
-		button.custom_minimum_size = Vector2(0, 96)
+		button.custom_minimum_size = Vector2(0, 110)
 		button.add_theme_stylebox_override("normal", _make_button_style())
-		button.add_theme_font_size_override("font_size", 26)
+		button.add_theme_font_size_override("font_size", 42)
 		button.pressed.connect(_on_choice_pressed.bind(choice))
 		choices_container.add_child(button)
 

@@ -154,7 +154,7 @@ theme_override_constants/separation = 20
 
 [node name="DayLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 40
 text = "Day 1"
 
 [node name="TopSpacer" type="Control" parent="MainVBox/TopBarMargin/TopBar"]
@@ -166,7 +166,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 custom_minimum_size = Vector2(130, 78)
 theme_override_styles/normal = SubResource("1")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 30
 text = ""
 
 [node name="BagContent" type="HBoxContainer" parent="MainVBox/TopBarMargin/TopBar/BagButton"]
@@ -191,7 +191,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 30
 text = "BAG"
 
 [node name="StatsBox" type="HBoxContainer" parent="MainVBox/TopBarMargin/TopBar"]
@@ -207,7 +207,7 @@ theme_override_styles/panel = SubResource("3")
 [node name="HPLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/HPBadge"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.55, 0.55, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 44
 text = "HP 50"
 
 [node name="StaBadge" type="PanelContainer" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
@@ -218,7 +218,7 @@ theme_override_styles/panel = SubResource("4")
 [node name="StaLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/StaBadge"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.95, 0.5, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 44
 text = "STA 40"
 
 [node name="MorBadge" type="PanelContainer" parent="MainVBox/TopBarMargin/TopBar/StatsBox"]
@@ -229,7 +229,7 @@ theme_override_styles/panel = SubResource("5")
 [node name="MorLabel" type="Label" parent="MainVBox/TopBarMargin/TopBar/StatsBox/MorBadge"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65, 0.75, 1, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 44
 text = "MOR 50"
 
 [node name="MiddleSpacer" type="Control" parent="MainVBox"]
@@ -261,7 +261,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 46
 text = ""
 
 [node name="ChoicesContainer" type="VBoxContainer" parent="MainVBox/BottomMargin/BottomVBox"]
@@ -291,7 +291,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="OutcomePanel" type="PanelContainer" parent="OutcomeModal/PopupCenter"]
-custom_minimum_size = Vector2(600, 0)
+custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("2")
 
@@ -302,14 +302,14 @@ theme_override_constants/separation = 24
 [node name="OutcomeLabel" type="Label" parent="OutcomeModal/PopupCenter/OutcomePanel/OutcomeVBox"]
 layout_mode = 2
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 42
 text = ""
 
 [node name="OutcomeButton" type="Button" parent="OutcomeModal/PopupCenter/OutcomePanel/OutcomeVBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 86)
 theme_override_styles/normal = SubResource("1")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 38
 text = "Continue"
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
@@ -351,7 +351,7 @@ theme_override_constants/separation = 24
 
 [node name="TitleLabel" type="Label" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 48
 horizontal_alignment = 1
 text = "Inventory"
 
@@ -363,7 +363,7 @@ columns = 3
 
 [node name="CloseButton" type="Button" parent="InventoryModal/PopupCenter/InventoryPanel/InventoryVBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 74)
+custom_minimum_size = Vector2(0, 86)
 theme_override_styles/normal = SubResource("1")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 38
 text = "Close"
