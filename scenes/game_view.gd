@@ -289,25 +289,41 @@ func _make_button_style() -> StyleBoxFlat:
 # duplicate mouse+touch events (emulate_touch_from_mouse fires both for a
 # single physical click).
 
+var _press_started_in_text := false
+
 func _input(event: InputEvent) -> void:
 	var is_press_event := false
 	var pressed := false
+	var event_pos: Vector2
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		is_press_event = true
 		pressed = event.pressed
+		event_pos = event.position
 	elif event is InputEventScreenTouch:
 		is_press_event = true
 		pressed = event.pressed
+		event_pos = event.position
 
 	if not is_press_event:
 		return
 
 	if pressed:
+		# Ignore presses that START inside the text panel - that's for
+		# scrolling, not the background-reveal gesture. Track this whole
+		# press-cycle as "in text" so a drag that ends outside it (or vice
+		# versa) doesn't leave the timer/reveal state stuck.
+		if prompt_scroll.get_global_rect().has_point(event_pos):
+			_press_started_in_text = true
+			return
+		_press_started_in_text = false
 		if not long_press_timer.is_stopped():
 			return  # already tracking a press - ignore the duplicate mouse/touch echo
 		long_press_timer.start()
 	else:
+		if _press_started_in_text:
+			_press_started_in_text = false
+			return
 		if long_press_timer.is_stopped() and not _reveal_active:
 			return  # duplicate/stray release - nothing to cancel
 		long_press_timer.stop()
